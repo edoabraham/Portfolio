@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="SDLFunctions.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Cell.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Cell.h" />
+    <ClInclude Include="mainFunctions.h" />
+    <ClInclude Include="PrecompiledHeader.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLFunctions.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{c0a47c71-8f5b-42a9-9e9b-c9f7f59f5bcf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

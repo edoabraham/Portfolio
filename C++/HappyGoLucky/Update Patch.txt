@@ -1,0 +1,9 @@
+Free image/surface
+Consolidated vector<SDL_Rect> define
+Pressing 2 keys causes character to vanish
+Removed velocity checks as they cause vanishing when the case if statement and the velocity conflict, it's left with no other options. Flags are more than enough.
+Releasing a key while having another pressed down will 'cause the character to move in one direction while facing the other.
+Larger sprite frames were not offset correctly
+Simplified mirror clipping (cumbersome) + Offset flipping
+After Image effect
+Pause Game
