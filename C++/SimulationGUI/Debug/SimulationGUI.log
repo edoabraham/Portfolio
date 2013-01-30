@@ -1,0 +1,20 @@
+﻿Build started 10/23/2012 12:45:15 AM.
+     1>Project "D:\Projects\GUIProject\SimulationGUI\SimulationGUI.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\SimulationGUI.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       CustomBuild:
+         All outputs are up-to-date.
+       ClCompile:
+         All outputs are up-to-date.
+         All outputs are up-to-date.
+       Link:
+         All outputs are up-to-date.
+         SimulationGUI.vcxproj -> D:\Projects\GUIProject\Win32\Debug\SimulationGUI.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\SimulationGUI.unsuccessfulbuild".
+         Touching "Debug\SimulationGUI.lastbuildstate".
+     1>Done Building Project "D:\Projects\GUIProject\SimulationGUI\SimulationGUI.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.21

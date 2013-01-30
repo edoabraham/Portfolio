@@ -1,0 +1,10 @@
+How to Read Snapshot Data Files
+
+Format: JSON
+
+"snap_shot" is the snap shot number
+
+
+
+
+Create a .config file

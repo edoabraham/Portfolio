@@ -1,0 +1,770 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		069D05B0128AE5DC7EE31738 /* QtCore.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 7BC2E65A5E699A5E5D834CA2 /* QtCore.framework */; };
+		0753645BDCA094E0B08D4D47 /* IonizationVsRadius.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = D834943D328EA328888B2F33 /* IonizationVsRadius.cpp */; settings = {ATTRIBUTES = (); }; };
+		098EF73214B371253B3CB7C6 /* stdafx.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = E5289FCB6989B94D3D785C16 /* stdafx.cpp */; settings = {ATTRIBUTES = (); }; };
+		11018B7216B0ED6300687E94 /* CollisionEnergy.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 11018B7116B0ED6300687E94 /* CollisionEnergy.cpp */; };
+		11018B7516B0EDD500687E94 /* CollisionEnergyData.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 11018B7316B0EDD500687E94 /* CollisionEnergyData.cpp */; };
+		1106395016B1461300C4969F /* CollisionEnergyPlot.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 1106394E16B1461300C4969F /* CollisionEnergyPlot.cpp */; };
+		1106395416B2235600C4969F /* ParticleDistributionPlot.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 1106395216B2235500C4969F /* ParticleDistributionPlot.cpp */; };
+		1113C11C16A471E500BCA706 /* StartUpPrompt.ui in Bundle Resources */ = {isa = PBXBuildFile; fileRef = 1113C11B16A471E500BCA706 /* StartUpPrompt.ui */; };
+		1113C12116A7113600BCA706 /* Configuration.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 1113C12016A7113600BCA706 /* Configuration.cpp */; };
+		118B5206167D8B8600EF3AF2 /* RPK.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 118B5205167D8B8600EF3AF2 /* RPK.cpp */; };
+		1195B0B016651F23003D7A47 /* Dev Notes.rtf in Bundle Resources */ = {isa = PBXBuildFile; fileRef = 1195B0AF16651F23003D7A47 /* Dev Notes.rtf */; };
+		1195B0B5166577BD003D7A47 /* GraphDropBox.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 1195B0B4166577BD003D7A47 /* GraphDropBox.cpp */; };
+		11D1DE3C16B63AC900DC5D60 /* LoadFileProcess.ui in Bundle Resources */ = {isa = PBXBuildFile; fileRef = 11D1DE3B16B63AC900DC5D60 /* LoadFileProcess.ui */; };
+		11D1DE3F16B63B6C00DC5D60 /* LoadFileProcess.qrc in Bundle Resources */ = {isa = PBXBuildFile; fileRef = 11D1DE3E16B63B6C00DC5D60 /* LoadFileProcess.qrc */; };
+		11D1DE4116B63C8300DC5D60 /* StartUpPrompt.qrc in Bundle Resources */ = {isa = PBXBuildFile; fileRef = 11D1DE4016B63C8300DC5D60 /* StartUpPrompt.qrc */; };
+		2B093CA6F071B023A473CED0 /* main.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 118FCBAABA162BA17933C789 /* main.cpp */; settings = {ATTRIBUTES = (); }; };
+		32DF78C8850E1A2F52E8FF84 /* Snapshot.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 17ECA3D938B2D0876A6AACEB /* Snapshot.cpp */; settings = {ATTRIBUTES = (); }; };
+		3EA64E6CD9434AF0466AE97F /* DensityVsRadius.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = F22AE67FFCA60F29944EFC0C /* DensityVsRadius.cpp */; settings = {ATTRIBUTES = (); }; };
+		47CF0988E35550F9056AD319 /* ShellData.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 5118042C1752979B419A682A /* ShellData.cpp */; settings = {ATTRIBUTES = (); }; };
+		481B14E2ADB42615B9A461CE /* DataManager.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 14877459C16C6B1A1ADB8804 /* DataManager.cpp */; settings = {ATTRIBUTES = (); }; };
+		501667F26B3C1FF6767A7C12 /* QtGui.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 9B36DA7E32F0304E780E7972 /* QtGui.framework */; };
+		56FAB9F93B151BEB1E2B19DE /* qrc_simulationplotgui.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = BEE1168DA84CEAD2E7B4E480 /* qrc_simulationplotgui.cpp */; settings = {ATTRIBUTES = (); }; };
+		5787F1D263F35B7F75D3A896 /* moc_simulationplotgui.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 7BA48A18C61F29A5A8110A6F /* moc_simulationplotgui.cpp */; settings = {ATTRIBUTES = (); }; };
+		60B16D39A71606874F455B57 /* qcustomplot.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 753EB6E07DD6EB7ADAB23CB3 /* qcustomplot.cpp */; settings = {ATTRIBUTES = (); }; };
+		842191DD59B3ABBC3B5FA039 /* Gamma.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = CF9FADFA812011236E420178 /* Gamma.cpp */; settings = {ATTRIBUTES = (); }; };
+		8C5095CE97C0E4F2436C5F1A /* Savepoint.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 235AF2BD0F2F97A01004D12A /* Savepoint.cpp */; settings = {ATTRIBUTES = (); }; };
+		A5B6663662019A6B4E1A2FC8 /* FileReader.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 3056DAC50F081EEA10B07F26 /* FileReader.cpp */; settings = {ATTRIBUTES = (); }; };
+		A80EFC5F3F6C96885C956690 /* SnapshotData.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 9FD550C7B89289CF301FEC19 /* SnapshotData.cpp */; settings = {ATTRIBUTES = (); }; };
+		B8A60C1664AE3EFB024EB7C5 /* simulationplotgui.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 8806EB863A908CE9D82E40AF /* simulationplotgui.cpp */; settings = {ATTRIBUTES = (); }; };
+		C0FDDCAE7002EAE691C6823D /* ParticleDataStruct.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = BEE76D8C04566350F06EC38E /* ParticleDataStruct.cpp */; settings = {ATTRIBUTES = (); }; };
+		C755ABF6805C9DAACA47017B /* moc_qcustomplot.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 623BCC3CB9424F2CF404A48D /* moc_qcustomplot.cpp */; settings = {ATTRIBUTES = (); }; };
+		ECDC4DB9F470D3DD98114C49 /* TemperatureVsRadius.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 924B7EEB0EE185F1D20767BF /* TemperatureVsRadius.cpp */; settings = {ATTRIBUTES = (); }; };
+		FC703F6E69ABA20C3B6E30B2 /* WallRadiusVsTime.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = F68F86916F1610DDD069D0A0 /* WallRadiusVsTime.cpp */; settings = {ATTRIBUTES = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		11018B7016B0EAE000687E94 /* CollisionEnergy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollisionEnergy.h; sourceTree = SOURCE_ROOT; };
+		11018B7116B0ED6300687E94 /* CollisionEnergy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionEnergy.cpp; sourceTree = SOURCE_ROOT; };
+		11018B7316B0EDD500687E94 /* CollisionEnergyData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionEnergyData.cpp; sourceTree = SOURCE_ROOT; };
+		11018B7416B0EDD500687E94 /* CollisionEnergyData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionEnergyData.h; sourceTree = SOURCE_ROOT; };
+		1101D95816526698001DD0FD /* Gamma.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gamma.h; path = Gamma/Gamma.h; sourceTree = "<group>"; };
+		1101DAD516550FB5001DD0FD /* Vector3.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = Vector3.h; sourceTree = SOURCE_ROOT; };
+		1106394E16B1461300C4969F /* CollisionEnergyPlot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionEnergyPlot.cpp; sourceTree = SOURCE_ROOT; };
+		1106394F16B1461300C4969F /* CollisionEnergyPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionEnergyPlot.h; sourceTree = SOURCE_ROOT; };
+		1106395216B2235500C4969F /* ParticleDistributionPlot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleDistributionPlot.cpp; sourceTree = SOURCE_ROOT; };
+		1106395316B2235500C4969F /* ParticleDistributionPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleDistributionPlot.h; sourceTree = SOURCE_ROOT; };
+		11127BDB165711C6000C7D51 /* Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = SOURCE_ROOT; };
+		1113C11B16A471E500BCA706 /* StartUpPrompt.ui */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = StartUpPrompt.ui; sourceTree = "<group>"; };
+		1113C11E16A70DE100BCA706 /* ui_StartUpPrompt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ui_StartUpPrompt.h; sourceTree = "<group>"; };
+		1113C11F16A70FD400BCA706 /* StartUpDialog_UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartUpDialog_UI.h; sourceTree = SOURCE_ROOT; };
+		1113C12016A7113600BCA706 /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Configuration.cpp; sourceTree = SOURCE_ROOT; };
+		1113D6381686180E00ED1072 /* StringResource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringResource.h; sourceTree = SOURCE_ROOT; };
+		113E3FF91652357000702480 /* SimulationPlotGUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimulationPlotGUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		11743CB51665E77700281F03 /* Configuration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = SOURCE_ROOT; };
+		118B5203167D87DE00EF3AF2 /* RPK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPK.h; sourceTree = SOURCE_ROOT; };
+		118B5204167D886500EF3AF2 /* RPKStruct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPKStruct.h; sourceTree = SOURCE_ROOT; };
+		118B5205167D8B8600EF3AF2 /* RPK.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RPK.cpp; sourceTree = SOURCE_ROOT; };
+		118FCBAABA162BA17933C789 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
+		1195B0AF16651F23003D7A47 /* Dev Notes.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "Dev Notes.rtf"; sourceTree = SOURCE_ROOT; };
+		1195B0B116657662003D7A47 /* GraphDropBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphDropBox.h; sourceTree = SOURCE_ROOT; };
+		1195B0B4166577BD003D7A47 /* GraphDropBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GraphDropBox.cpp; sourceTree = SOURCE_ROOT; };
+		11D1DE3B16B63AC900DC5D60 /* LoadFileProcess.ui */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LoadFileProcess.ui; sourceTree = "<group>"; };
+		11D1DE3E16B63B6C00DC5D60 /* LoadFileProcess.qrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LoadFileProcess.qrc; sourceTree = "<group>"; };
+		11D1DE4016B63C8300DC5D60 /* StartUpPrompt.qrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = StartUpPrompt.qrc; sourceTree = "<group>"; };
+		11D1DE4216B63F3F00DC5D60 /* ui_LoadFileProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ui_LoadFileProcess.h; sourceTree = "<group>"; };
+		11D1DE4316B63FAC00DC5D60 /* LoadProgressForm_UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadProgressForm_UI.h; sourceTree = SOURCE_ROOT; };
+		14877459C16C6B1A1ADB8804 /* DataManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DataManager.cpp; sourceTree = SOURCE_ROOT; };
+		17ECA3D938B2D0876A6AACEB /* Snapshot.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Snapshot.cpp; sourceTree = SOURCE_ROOT; };
+		215F6436EAC227B167250C7C /* ui_simulationplotgui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ui_simulationplotgui.h; sourceTree = SOURCE_ROOT; };
+		235AF2BD0F2F97A01004D12A /* Savepoint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Savepoint.cpp; sourceTree = SOURCE_ROOT; };
+		28BF2EFA121E6CE45527A4BC /* ShellData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShellData.h; sourceTree = SOURCE_ROOT; };
+		3056DAC50F081EEA10B07F26 /* FileReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FileReader.cpp; sourceTree = SOURCE_ROOT; };
+		3E3CD6CD551C1D6A4AD1D644 /* Snapshot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Snapshot.h; sourceTree = SOURCE_ROOT; };
+		41A14AEFD5DEF5B823AFA261 /* Graph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Graph.h; sourceTree = SOURCE_ROOT; };
+		4DA53D0305F042566CA9DA64 /* SimulationPlotGUI.pro */ = {isa = PBXFileReference; lastKnownFileType = text; path = SimulationPlotGUI.pro; sourceTree = SOURCE_ROOT; };
+		5118042C1752979B419A682A /* ShellData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ShellData.cpp; sourceTree = SOURCE_ROOT; };
+		5D2008075556EFEE373BFA22 /* simulationplotgui.qrc */ = {isa = PBXFileReference; lastKnownFileType = text; path = simulationplotgui.qrc; sourceTree = SOURCE_ROOT; };
+		6091492F270AE7C1F657D13B /* FileReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileReader.h; sourceTree = SOURCE_ROOT; };
+		623BCC3CB9424F2CF404A48D /* moc_qcustomplot.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_qcustomplot.cpp; sourceTree = SOURCE_ROOT; };
+		67F49DCBAA7B5568D07B3A07 /* simulationplotgui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = simulationplotgui.h; sourceTree = SOURCE_ROOT; };
+		753EB6E07DD6EB7ADAB23CB3 /* qcustomplot.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = qcustomplot.cpp; sourceTree = SOURCE_ROOT; };
+		796438235552D5F346F860B8 /* SnapshotData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnapshotData.h; sourceTree = SOURCE_ROOT; };
+		7ABB1D0FD1270203D9172B83 /* qcustomplot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = qcustomplot.h; sourceTree = SOURCE_ROOT; };
+		7BA48A18C61F29A5A8110A6F /* moc_simulationplotgui.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_simulationplotgui.cpp; sourceTree = SOURCE_ROOT; };
+		7BC2E65A5E699A5E5D834CA2 /* QtCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtCore.framework; path = /Library/Frameworks/QtCore.framework; sourceTree = "<unknown>"; };
+		858BF704388F6BBD37BC73EE /* SimulationPlotGUI_UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimulationPlotGUI_UI.h; sourceTree = SOURCE_ROOT; };
+		8806EB863A908CE9D82E40AF /* simulationplotgui.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = simulationplotgui.cpp; sourceTree = SOURCE_ROOT; };
+		9196E3EC633739B25B7CD5A3 /* Savepoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Savepoint.h; sourceTree = SOURCE_ROOT; };
+		924B7EEB0EE185F1D20767BF /* TemperatureVsRadius.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TemperatureVsRadius.cpp; sourceTree = SOURCE_ROOT; };
+		92F2AFE20C5D5DB7D1C64D29 /* TemperatureVsRadius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TemperatureVsRadius.h; sourceTree = SOURCE_ROOT; };
+		9B36DA7E32F0304E780E7972 /* QtGui.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtGui.framework; path = /Library/Frameworks/QtGui.framework; sourceTree = "<unknown>"; };
+		9FD550C7B89289CF301FEC19 /* SnapshotData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SnapshotData.cpp; sourceTree = SOURCE_ROOT; };
+		A88E35BDAB4B0FF96DFB7CB8 /* stdafx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = SOURCE_ROOT; };
+		B25ABF2EEBE402B363851728 /* IonizationVsRadius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IonizationVsRadius.h; sourceTree = SOURCE_ROOT; };
+		BED89D8C8D0BCEE07BBD47E9 /* DataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = SOURCE_ROOT; };
+		BEE1168DA84CEAD2E7B4E480 /* qrc_simulationplotgui.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = qrc_simulationplotgui.cpp; sourceTree = SOURCE_ROOT; };
+		BEE76D8C04566350F06EC38E /* ParticleDataStruct.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleDataStruct.cpp; sourceTree = SOURCE_ROOT; };
+		BF37DC6D231A75254EF78F9D /* DensityVsRadius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DensityVsRadius.h; sourceTree = SOURCE_ROOT; };
+		C40A240EEF7D03506F2D8DD8 /* ParticleDataStruct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParticleDataStruct.h; sourceTree = SOURCE_ROOT; };
+		C9DFDFCC25E534A99258902E /* simulationplotgui.ui */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = simulationplotgui.ui; sourceTree = SOURCE_ROOT; };
+		CF9FADFA812011236E420178 /* Gamma.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Gamma.cpp; path = Gamma/Gamma.cpp; sourceTree = SOURCE_ROOT; };
+		D834943D328EA328888B2F33 /* IonizationVsRadius.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IonizationVsRadius.cpp; sourceTree = SOURCE_ROOT; };
+		E5289FCB6989B94D3D785C16 /* stdafx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = stdafx.cpp; sourceTree = SOURCE_ROOT; };
+		F22AE67FFCA60F29944EFC0C /* DensityVsRadius.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DensityVsRadius.cpp; sourceTree = SOURCE_ROOT; };
+		F68F86916F1610DDD069D0A0 /* WallRadiusVsTime.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WallRadiusVsTime.cpp; sourceTree = SOURCE_ROOT; };
+		FF465BC7EB60572C752174FA /* WallRadiusVsTime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallRadiusVsTime.h; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2A1043669E6E5A7426EA502A /* Frameworks & Libraries */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				501667F26B3C1FF6767A7C12 /* QtGui.framework in Frameworks & Libraries */,
+				069D05B0128AE5DC7EE31738 /* QtCore.framework in Frameworks & Libraries */,
+			);
+			name = "Frameworks & Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05596AB53D8D521C69802C27 /* SimulationPlotGUI */ = {
+			isa = PBXGroup;
+			children = (
+				1101DAD31655017F001DD0FD /* GUI */,
+				11A5A199167A126900013AE0 /* Data */,
+				1195B0AE16651EE4003D7A47 /* Notes */,
+				1101DAD01654FF58001DD0FD /* Graphs */,
+				11743CB31665E73F00281F03 /* Configuration */,
+				11127BDA165710D8000C7D51 /* Utilities */,
+				1101DAD4165501FA001DD0FD /* Framework */,
+				113E3FFA1652357000702480 /* Products */,
+			);
+			name = SimulationPlotGUI;
+			sourceTree = "<unknown>";
+		};
+		11018B6F16B0EA6F00687E94 /* CollisionEnergy */ = {
+			isa = PBXGroup;
+			children = (
+				11018B7016B0EAE000687E94 /* CollisionEnergy.h */,
+				11018B7116B0ED6300687E94 /* CollisionEnergy.cpp */,
+				11018B7416B0EDD500687E94 /* CollisionEnergyData.h */,
+				11018B7316B0EDD500687E94 /* CollisionEnergyData.cpp */,
+			);
+			name = CollisionEnergy;
+			sourceTree = "<group>";
+		};
+		1101DACF1654FEF1001DD0FD /* Snapshot */ = {
+			isa = PBXGroup;
+			children = (
+				3E3CD6CD551C1D6A4AD1D644 /* Snapshot.h */,
+				17ECA3D938B2D0876A6AACEB /* Snapshot.cpp */,
+				28BF2EFA121E6CE45527A4BC /* ShellData.h */,
+				5118042C1752979B419A682A /* ShellData.cpp */,
+				796438235552D5F346F860B8 /* SnapshotData.h */,
+				9FD550C7B89289CF301FEC19 /* SnapshotData.cpp */,
+			);
+			name = Snapshot;
+			sourceTree = "<group>";
+		};
+		1101DAD01654FF58001DD0FD /* Graphs */ = {
+			isa = PBXGroup;
+			children = (
+				41A14AEFD5DEF5B823AFA261 /* Graph.h */,
+				1195B0B2166576AB003D7A47 /* DataGraphs */,
+				1195B0B116657662003D7A47 /* GraphDropBox.h */,
+				1195B0B4166577BD003D7A47 /* GraphDropBox.cpp */,
+				1195B0B316657796003D7A47 /* DataDropBoxes */,
+			);
+			name = Graphs;
+			sourceTree = "<group>";
+		};
+		1101DAD1165500E1001DD0FD /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				CBC03C19FB3BF424CA9CC179 /* Gamma */,
+				A88E35BDAB4B0FF96DFB7CB8 /* stdafx.h */,
+				E5289FCB6989B94D3D785C16 /* stdafx.cpp */,
+				7ABB1D0FD1270203D9172B83 /* qcustomplot.h */,
+				753EB6E07DD6EB7ADAB23CB3 /* qcustomplot.cpp */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		1101DAD216550138001DD0FD /* Savepoint */ = {
+			isa = PBXGroup;
+			children = (
+				9196E3EC633739B25B7CD5A3 /* Savepoint.h */,
+				235AF2BD0F2F97A01004D12A /* Savepoint.cpp */,
+				C40A240EEF7D03506F2D8DD8 /* ParticleDataStruct.h */,
+				BEE76D8C04566350F06EC38E /* ParticleDataStruct.cpp */,
+			);
+			name = Savepoint;
+			sourceTree = "<group>";
+		};
+		1101DAD31655017F001DD0FD /* GUI */ = {
+			isa = PBXGroup;
+			children = (
+				118FCBAABA162BA17933C789 /* main.cpp */,
+				67F49DCBAA7B5568D07B3A07 /* simulationplotgui.h */,
+				8806EB863A908CE9D82E40AF /* simulationplotgui.cpp */,
+				858BF704388F6BBD37BC73EE /* SimulationPlotGUI_UI.h */,
+				1113C11F16A70FD400BCA706 /* StartUpDialog_UI.h */,
+				11D1DE4316B63FAC00DC5D60 /* LoadProgressForm_UI.h */,
+			);
+			name = GUI;
+			sourceTree = "<group>";
+		};
+		1101DAD4165501FA001DD0FD /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				1101DAD1165500E1001DD0FD /* Dependencies */,
+				46E892BBB6BB6952967E0561 /* Temporary Sources */,
+				7CABE3C80E79AD2B307756D2 /* Sources [qmake] */,
+				52C235EBF1C9B07808119459 /* Sources [RCC] */,
+				EEC299C65D5017EB9DD513B0 /* Sources [UIC] */,
+				ED1E82605DD74B483AF3C982 /* External Frameworks and Libraries */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		11127BDA165710D8000C7D51 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1101DAD516550FB5001DD0FD /* Vector3.h */,
+				11127BDB165711C6000C7D51 /* Utilities.h */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		113E3FFA1652357000702480 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				113E3FF91652357000702480 /* SimulationPlotGUI.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		11743CB31665E73F00281F03 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				11743CB51665E77700281F03 /* Configuration.h */,
+				1113C12016A7113600BCA706 /* Configuration.cpp */,
+				1113D6381686180E00ED1072 /* StringResource.h */,
+			);
+			name = Configuration;
+			sourceTree = "<group>";
+		};
+		118B5202167D87C100EF3AF2 /* RPK */ = {
+			isa = PBXGroup;
+			children = (
+				118B5203167D87DE00EF3AF2 /* RPK.h */,
+				118B5205167D8B8600EF3AF2 /* RPK.cpp */,
+				118B5204167D886500EF3AF2 /* RPKStruct.h */,
+			);
+			name = RPK;
+			sourceTree = "<group>";
+		};
+		1195B0AE16651EE4003D7A47 /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				1195B0AF16651F23003D7A47 /* Dev Notes.rtf */,
+			);
+			name = Notes;
+			sourceTree = "<group>";
+		};
+		1195B0B2166576AB003D7A47 /* DataGraphs */ = {
+			isa = PBXGroup;
+			children = (
+				BF37DC6D231A75254EF78F9D /* DensityVsRadius.h */,
+				F22AE67FFCA60F29944EFC0C /* DensityVsRadius.cpp */,
+				FF465BC7EB60572C752174FA /* WallRadiusVsTime.h */,
+				F68F86916F1610DDD069D0A0 /* WallRadiusVsTime.cpp */,
+				B25ABF2EEBE402B363851728 /* IonizationVsRadius.h */,
+				D834943D328EA328888B2F33 /* IonizationVsRadius.cpp */,
+				92F2AFE20C5D5DB7D1C64D29 /* TemperatureVsRadius.h */,
+				924B7EEB0EE185F1D20767BF /* TemperatureVsRadius.cpp */,
+				1106395316B2235500C4969F /* ParticleDistributionPlot.h */,
+				1106395216B2235500C4969F /* ParticleDistributionPlot.cpp */,
+				1106394F16B1461300C4969F /* CollisionEnergyPlot.h */,
+				1106394E16B1461300C4969F /* CollisionEnergyPlot.cpp */,
+			);
+			name = DataGraphs;
+			sourceTree = "<group>";
+		};
+		1195B0B316657796003D7A47 /* DataDropBoxes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = DataDropBoxes;
+			sourceTree = "<group>";
+		};
+		11A5A199167A126900013AE0 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				BED89D8C8D0BCEE07BBD47E9 /* DataManager.h */,
+				14877459C16C6B1A1ADB8804 /* DataManager.cpp */,
+				6091492F270AE7C1F657D13B /* FileReader.h */,
+				3056DAC50F081EEA10B07F26 /* FileReader.cpp */,
+				118B5202167D87C100EF3AF2 /* RPK */,
+				1101DACF1654FEF1001DD0FD /* Snapshot */,
+				1101DAD216550138001DD0FD /* Savepoint */,
+				11018B6F16B0EA6F00687E94 /* CollisionEnergy */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		46E892BBB6BB6952967E0561 /* Temporary Sources */ = {
+			isa = PBXGroup;
+			children = (
+				623BCC3CB9424F2CF404A48D /* moc_qcustomplot.cpp */,
+				7BA48A18C61F29A5A8110A6F /* moc_simulationplotgui.cpp */,
+				BEE1168DA84CEAD2E7B4E480 /* qrc_simulationplotgui.cpp */,
+				215F6436EAC227B167250C7C /* ui_simulationplotgui.h */,
+				1113C11E16A70DE100BCA706 /* ui_StartUpPrompt.h */,
+				11D1DE4216B63F3F00DC5D60 /* ui_LoadFileProcess.h */,
+			);
+			name = "Temporary Sources";
+			sourceTree = SOURCE_ROOT;
+		};
+		52C235EBF1C9B07808119459 /* Sources [RCC] */ = {
+			isa = PBXGroup;
+			children = (
+				11D1DE4016B63C8300DC5D60 /* StartUpPrompt.qrc */,
+				11D1DE3E16B63B6C00DC5D60 /* LoadFileProcess.qrc */,
+				5D2008075556EFEE373BFA22 /* simulationplotgui.qrc */,
+			);
+			name = "Sources [RCC]";
+			sourceTree = SOURCE_ROOT;
+		};
+		7CABE3C80E79AD2B307756D2 /* Sources [qmake] */ = {
+			isa = PBXGroup;
+			children = (
+				4DA53D0305F042566CA9DA64 /* SimulationPlotGUI.pro */,
+			);
+			name = "Sources [qmake]";
+			sourceTree = SOURCE_ROOT;
+		};
+		CBC03C19FB3BF424CA9CC179 /* Gamma */ = {
+			isa = PBXGroup;
+			children = (
+				1101D95816526698001DD0FD /* Gamma.h */,
+				CF9FADFA812011236E420178 /* Gamma.cpp */,
+			);
+			name = Gamma;
+			sourceTree = SOURCE_ROOT;
+		};
+		ED1E82605DD74B483AF3C982 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				9B36DA7E32F0304E780E7972 /* QtGui.framework */,
+				7BC2E65A5E699A5E5D834CA2 /* QtCore.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = SOURCE_ROOT;
+		};
+		EEC299C65D5017EB9DD513B0 /* Sources [UIC] */ = {
+			isa = PBXGroup;
+			children = (
+				1113C11B16A471E500BCA706 /* StartUpPrompt.ui */,
+				11D1DE3B16B63AC900DC5D60 /* LoadFileProcess.ui */,
+				C9DFDFCC25E534A99258902E /* simulationplotgui.ui */,
+			);
+			name = "Sources [UIC]";
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3FB1A76E4EBAD8BD70323792 /* SimulationPlotGUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17B3380A4D6A7D415E7F2E1E /* Build configuration list for PBXNativeTarget "SimulationPlotGUI" */;
+			buildPhases = (
+				D7BA7D76DAB5DD13389D6332 /* Qt Qmake */,
+				A0A52A2ADF7A1E2A99738674 /* Qt Preprocessors */,
+				C29B8785722055ED95EF7B57 /* Build Sources */,
+				2A1043669E6E5A7426EA502A /* Frameworks & Libraries */,
+				3787F99312C85FF0073FD7BA /* Bundle Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimulationPlotGUI;
+			productName = SimulationPlotGUI;
+			productReference = 113E3FF91652357000702480 /* SimulationPlotGUI.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		91B15E841AA80083484172DE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+			};
+			buildConfigurationList = CC82A9286117DFED018F418F /* Build configuration list for PBXProject "SimulationPlotGUI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 05596AB53D8D521C69802C27 /* SimulationPlotGUI */;
+			productRefGroup = 113E3FFA1652357000702480 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3FB1A76E4EBAD8BD70323792 /* SimulationPlotGUI */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3787F99312C85FF0073FD7BA /* Bundle Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1195B0B016651F23003D7A47 /* Dev Notes.rtf in Bundle Resources */,
+				1113C11C16A471E500BCA706 /* StartUpPrompt.ui in Bundle Resources */,
+				11D1DE3C16B63AC900DC5D60 /* LoadFileProcess.ui in Bundle Resources */,
+				11D1DE3F16B63B6C00DC5D60 /* LoadFileProcess.qrc in Bundle Resources */,
+				11D1DE4116B63C8300DC5D60 /* StartUpPrompt.qrc in Bundle Resources */,
+			);
+			name = "Bundle Resources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A0A52A2ADF7A1E2A99738674 /* Qt Preprocessors */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "Qt Preprocessors";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/UltraMax/Desktop/SimulationProject/SimulationPlotGUI/SimulationPlotGUI -f 'SimulationPlotGUI.xcodeproj/qt_preprocess.mak'";
+		};
+		D7BA7D76DAB5DD13389D6332 /* Qt Qmake */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "Qt Qmake";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/UltraMax/Desktop/SimulationProject/SimulationPlotGUI/SimulationPlotGUI -f 'SimulationPlotGUI.xcodeproj/qt_makeqmake.mak'";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C29B8785722055ED95EF7B57 /* Build Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EA64E6CD9434AF0466AE97F /* DensityVsRadius.cpp in Build Sources */,
+				A5B6663662019A6B4E1A2FC8 /* FileReader.cpp in Build Sources */,
+				0753645BDCA094E0B08D4D47 /* IonizationVsRadius.cpp in Build Sources */,
+				2B093CA6F071B023A473CED0 /* main.cpp in Build Sources */,
+				8C5095CE97C0E4F2436C5F1A /* Savepoint.cpp in Build Sources */,
+				C0FDDCAE7002EAE691C6823D /* ParticleDataStruct.cpp in Build Sources */,
+				60B16D39A71606874F455B57 /* qcustomplot.cpp in Build Sources */,
+				47CF0988E35550F9056AD319 /* ShellData.cpp in Build Sources */,
+				B8A60C1664AE3EFB024EB7C5 /* simulationplotgui.cpp in Build Sources */,
+				32DF78C8850E1A2F52E8FF84 /* Snapshot.cpp in Build Sources */,
+				A80EFC5F3F6C96885C956690 /* SnapshotData.cpp in Build Sources */,
+				481B14E2ADB42615B9A461CE /* DataManager.cpp in Build Sources */,
+				098EF73214B371253B3CB7C6 /* stdafx.cpp in Build Sources */,
+				ECDC4DB9F470D3DD98114C49 /* TemperatureVsRadius.cpp in Build Sources */,
+				FC703F6E69ABA20C3B6E30B2 /* WallRadiusVsTime.cpp in Build Sources */,
+				842191DD59B3ABBC3B5FA039 /* Gamma.cpp in Build Sources */,
+				C755ABF6805C9DAACA47017B /* moc_qcustomplot.cpp in Build Sources */,
+				5787F1D263F35B7F75D3A896 /* moc_simulationplotgui.cpp in Build Sources */,
+				56FAB9F93B151BEB1E2B19DE /* qrc_simulationplotgui.cpp in Build Sources */,
+				1195B0B5166577BD003D7A47 /* GraphDropBox.cpp in Build Sources */,
+				118B5206167D8B8600EF3AF2 /* RPK.cpp in Build Sources */,
+				1113C12116A7113600BCA706 /* Configuration.cpp in Build Sources */,
+				11018B7216B0ED6300687E94 /* CollisionEnergy.cpp in Build Sources */,
+				11018B7516B0EDD500687E94 /* CollisionEnergyData.cpp in Build Sources */,
+				1106395016B1461300C4969F /* CollisionEnergyPlot.cpp in Build Sources */,
+				1106395416B2235600C4969F /* ParticleDistributionPlot.cpp in Build Sources */,
+			);
+			name = "Build Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4B72B24813252891014BCF61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				"ARCHS[sdk=*]" = x86_64;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/Library/Frameworks,
+				);
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
+					/Library/Frameworks,
+					/Library/Frameworks,
+				);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/QtCore.framework/Versions/4/Headers,
+					/usr/include/QtCore,
+					/Library/Frameworks/QtGui.framework/Versions/4/Headers,
+					/usr/include/QtGui,
+					/usr/include,
+					.,
+					Gamma,
+					Constants,
+					property_tree,
+					Units,
+					Math,
+					.,
+					.,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"/usr/local/Qt4.8/mkspecs/macx-xcode",
+				);
+				INFOPLIST_FILE = Info.plist;
+				LIBRARY_SEARCH_PATHS = /Library/Frameworks;
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-L/Library/Frameworks",
+					"-F/Library/Frameworks",
+				);
+				PRODUCT_NAME = SimulationPlotGUI;
+			};
+			name = Debug;
+		};
+		8C7174830A1E4DCBA0332EC1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CXX0X_EXTENSIONS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_USE_STANDARD_INCLUDE_SEARCHING = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/QtCore.framework/Versions/4/Headers,
+					/usr/include/QtCore,
+					/Library/Frameworks/QtGui.framework/Versions/4/Headers,
+					/usr/include/QtGui,
+					/usr/include,
+					.,
+					Gamma,
+					Constants,
+					property_tree,
+					Units,
+					Math,
+					.,
+					.,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"/usr/local/Qt4.8/mkspecs/macx-xcode",
+					/Library/Boost,
+					/Users/UltraMax/Desktop/SimulationProject/SimulationPlotGUI/SimulationPlotGUI/rapidjson/include/rapidjson,
+				);
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					/Library/Frameworks/QtCore.framework/Versions/4/Headers,
+					/usr/include/QtCore,
+					/Library/Frameworks/QtGui.framework/Versions/4/Headers,
+					/usr/include/QtGui,
+					/usr/include,
+					.,
+					Gamma,
+					Constants,
+					property_tree,
+					Units,
+					Math,
+					.,
+					.,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"/usr/local/Qt4.8/mkspecs/macx-xcode",
+					/Users/UltraMax/Desktop/SimulationProject/SimulationPlotGUI/SimulationPlotGUI/rapidjson,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/Library/Boost/libs,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = SimulationPlotGUI;
+				SDKROOT = macosx10.7;
+				SYMROOT = /Applications;
+			};
+			name = Release;
+		};
+		BEC09A62E69C3553534FF35E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CXX0X_EXTENSIONS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_USE_STANDARD_INCLUDE_SEARCHING = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/QtCore.framework/Versions/4/Headers,
+					/usr/include/QtCore,
+					/Library/Frameworks/QtGui.framework/Versions/4/Headers,
+					/usr/include/QtGui,
+					/usr/include,
+					.,
+					Gamma,
+					Constants,
+					property_tree,
+					Units,
+					Math,
+					.,
+					.,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"/usr/local/Qt4.8/mkspecs/macx-xcode",
+					/Users/UltraMax/Desktop/SimulationProject/SimulationPlotGUI/SimulationPlotGUI/rapidjson/include/rapidjson,
+				);
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					/Library/Frameworks/QtCore.framework/Versions/4/Headers,
+					/usr/include/QtCore,
+					/Library/Frameworks/QtGui.framework/Versions/4/Headers,
+					/usr/include/QtGui,
+					/usr/include,
+					.,
+					Gamma,
+					Constants,
+					property_tree,
+					Units,
+					Math,
+					.,
+					.,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"/usr/local/Qt4.8/mkspecs/macx-xcode",
+					/Users/UltraMax/Desktop/SimulationProject/SimulationPlotGUI/SimulationPlotGUI/rapidjson,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/Library/Boost/libs,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = SimulationPlotGUI;
+				SDKROOT = macosx10.7;
+				SYMROOT = /Applications;
+				"TEST_HOST[sdk=*]" = "";
+			};
+			name = Debug;
+		};
+		D70590BEB531B51029F711BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				"ARCHS[sdk=*]" = x86_64;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/Library/Frameworks,
+				);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/QtCore.framework/Versions/4/Headers,
+					/usr/include/QtCore,
+					/Library/Frameworks/QtGui.framework/Versions/4/Headers,
+					/usr/include/QtGui,
+					/usr/include,
+					.,
+					Gamma,
+					Constants,
+					property_tree,
+					Units,
+					Math,
+					.,
+					.,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"/usr/local/Qt4.8/mkspecs/macx-xcode",
+				);
+				INFOPLIST_FILE = Info.plist;
+				LIBRARY_SEARCH_PATHS = /Library/Frameworks;
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-L/Library/Frameworks",
+					"-F/Library/Frameworks",
+				);
+				PRODUCT_NAME = SimulationPlotGUI;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		17B3380A4D6A7D415E7F2E1E /* Build configuration list for PBXNativeTarget "SimulationPlotGUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEC09A62E69C3553534FF35E /* Debug */,
+				8C7174830A1E4DCBA0332EC1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC82A9286117DFED018F418F /* Build configuration list for PBXProject "SimulationPlotGUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B72B24813252891014BCF61 /* Debug */,
+				D70590BEB531B51029F711BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 91B15E841AA80083484172DE /* Project object */;
+}
