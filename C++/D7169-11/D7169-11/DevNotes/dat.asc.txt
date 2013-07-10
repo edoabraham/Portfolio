@@ -1,0 +1,82 @@
+Format data.asc
+Written by Jesse Z. Zhong
+Tools: HxD Hex Editor & ASCII Table
+
+Rules:
+	1. File is read starting from address 0x0.
+	2. Symbols and their values should be read in until 
+	   all are accounted for, then the data points are read in.
+	3. Symbols are delimited by '\t' (0x09), or a tab space.
+	4. Symbols are followed the symbol value.
+	5. Points are delimited by '\r' (0x0D), or a carriage return, 
+	   and '\n' (0x0A), or newline.
+	6. Important! All values (points included) are strings with variable lengths.
+ 
+Exceptions: 
+	(Example "Sampling Rate:\t10.00000\tHz\r\n")
+	1. If symbol values are followed by a tab space, search
+	   for another tab space or carriage return and ammend
+	   all the substrings leading up to the final return.
+	2. Periods (0x2E) should be treated normally, 
+	   like all alphabetical characters.
+
+File Header Symbols (in order)
+(Note: All space characters listed here are present in the actual file.)
+	Version:
+	Maxchannels:
+	Sample ID:
+	Data File:
+	Method:
+	User Name:
+	Acquisition Date and Time:
+	Sampling Rate:
+	Total Data Points:
+	X Axis Title:
+	Y Axis Title:
+	X Axis Multiplier:
+	Y Axis Multiplier:
+
+Example of how the header looks:
+(Note: Symbols are separated here for viewing ease. 
+Escape characters were substituted for extra detail.
+Symbols and values are mapped to the right.)
+	"Version:\t3\r\n"									Version = 3
+	"Maxchannels:\t1\r\n"									Maxchannels = 1
+	"Sample ID:\ts223_1ul_full1_$A\r\n"							Sample ID = s223_1ul_full1_$A
+	"Data File:\tC:\ChromQuest\Enterprise\Projects\Default\Data\06032013_s223(1).dat\r\n"	Data File = C:\ChromQuest\Enterprise\Projects\Default\Data\06032013_s223(1).dat
+	"Method:\tC:\ChromQuest\Enterprise\Projects\Method\ASTM D7169.met\r\n"			Method = C:\ChromQuest\Enterprise\Projects\Method\ASTM D7169.met
+	"User Name:\tSystem\r\n"								User Name = System
+	"Acquisition Date and Time:\t6/3/2013 1:32:41 PM\r\n"					Acquisition Date and Time = 6/3/2013 1:32:41 PM
+	"Sampling Rate:\t10.000000\tHz\r\n"							Sampling Rate = 10.000000 Hz
+	"Total Data Points:\t25801\tPts.\r\n"							Total Data Points = 25801 Pts.
+	"X Axis Title:\tMinutes\r\n"								X Axis Title = Minutes
+	"Y Axis Title:\tMillivolts\r\n"								Y Axis Title = Millivolts
+	"X Axis Multiplier:\t0.016667\r\n"							X Axis Multiplier = 0.016667
+	"Y Axis Multiplier:\t0.0001\r\n"							Y Axis Multiplier = 0.0001
+	
+Examples of how points are formatted:
+	"-238\r\n"										-238
+	"-35\r\n"										-35
+	...
+	"108362\r\n"										108362
+	"107930\r\n"										107930
+	
+*Example data was acquired from "06032013_s223(1).dat.asc"
+
+Algorithms
+	Parsing
+		1. Symbols should be read in order, making sure to check for 
+		   delimiter types when reading for symbol values.
+		2. The value for "Total Data Points:" should be stored locally.
+		   All values should also be stored in a specially created structure.
+		3. Create a countainer with a size matching the total data points. 
+		   Type should be signed int or signed long; there are no decimal values.
+		3. Iterate to the end of the document, or until the total is met,
+		   storing all values into the instantiated container.
+		4. Method should return a value depending on the success, or failure,
+		   of the parse and the integrity of the file.
+		   
+		   
+Additional Notes:
+	It should be noted that some of the symbols that store paths store paths 
+	specific to the machine that created the file.

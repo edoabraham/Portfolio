@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{32FA9A74-0AE3-4ECD-B03A-135B6C44798D}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>NetCDFC</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>.;..\netCDF 4.3.0 x86\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\netCDF 4.3.0 x86\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>.;..\netCDF 4.3.0 x86\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\netCDF 4.3.0 x86\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ncAtt.h" />
+    <ClInclude Include="ncByte.h" />
+    <ClInclude Include="ncChar.h" />
+    <ClInclude Include="ncCheck.h" />
+    <ClInclude Include="ncCompoundType.h" />
+    <ClInclude Include="ncDim.h" />
+    <ClInclude Include="ncDouble.h" />
+    <ClInclude Include="ncEnumType.h" />
+    <ClInclude Include="ncException.h" />
+    <ClInclude Include="ncFile.h" />
+    <ClInclude Include="ncFloat.h" />
+    <ClInclude Include="ncGroup.h" />
+    <ClInclude Include="ncGroupAtt.h" />
+    <ClInclude Include="ncInt.h" />
+    <ClInclude Include="ncInt64.h" />
+    <ClInclude Include="ncOpaqueType.h" />
+    <ClInclude Include="ncShort.h" />
+    <ClInclude Include="ncString.h" />
+    <ClInclude Include="ncType.h" />
+    <ClInclude Include="ncUbyte.h" />
+    <ClInclude Include="ncUint.h" />
+    <ClInclude Include="ncUint64.h" />
+    <ClInclude Include="ncUshort.h" />
+    <ClInclude Include="ncVar.h" />
+    <ClInclude Include="ncVarAtt.h" />
+    <ClInclude Include="ncVlenType.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ncAtt.cpp" />
+    <ClCompile Include="ncByte.cpp" />
+    <ClCompile Include="ncChar.cpp" />
+    <ClCompile Include="ncCheck.cpp" />
+    <ClCompile Include="ncCompoundType.cpp" />
+    <ClCompile Include="ncDim.cpp" />
+    <ClCompile Include="ncDouble.cpp" />
+    <ClCompile Include="ncEnumType.cpp" />
+    <ClCompile Include="ncException.cpp" />
+    <ClCompile Include="ncFile.cpp" />
+    <ClCompile Include="ncFloat.cpp" />
+    <ClCompile Include="ncGroup.cpp" />
+    <ClCompile Include="ncGroupAtt.cpp" />
+    <ClCompile Include="ncInt.cpp" />
+    <ClCompile Include="ncInt64.cpp" />
+    <ClCompile Include="ncOpaqueType.cpp" />
+    <ClCompile Include="ncShort.cpp" />
+    <ClCompile Include="ncString.cpp" />
+    <ClCompile Include="ncType.cpp" />
+    <ClCompile Include="ncUbyte.cpp" />
+    <ClCompile Include="ncUint.cpp" />
+    <ClCompile Include="ncUint64.cpp" />
+    <ClCompile Include="ncUshort.cpp" />
+    <ClCompile Include="ncVar.cpp" />
+    <ClCompile Include="ncVarAtt.cpp" />
+    <ClCompile Include="ncVlenType.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

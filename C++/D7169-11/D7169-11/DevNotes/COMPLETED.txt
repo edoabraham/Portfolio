@@ -1,0 +1,116 @@
+COMPLETED:
+
+[Offsetting] - DONE
+The next thing that the app needs to be able to do is offset selected signals.
+The only viable approach right now is to only change the data that is in the
+graphs as they are not restricted by the rules of the original *.dat.asc format.
+(x values are assumed to always start at 0 and increment by the sampling rate.)
+Saving these changes will either require truncating data or altering the original
+file format to accommodate an offset value for x.
+
+[Plot Colors] - DONE
+Another option that needs to be added to signal configurations is the ability
+to change a plot's color. A drop down box in the config window should display
+blocks of the colors for the user to choose. In the back end, the block will
+be mapped to QColor values. Possibly the best way of mergin this is to have a
+int to QColor mapping, with each index displaying the QColor it is mapped to.
+Selection of a block will pass an index and prompt a map lookup for its color.
+
+[Multi-Open] - DONE
+Allow file open dialog to open multiple files at once. The files will each be
+handled individually like normal.
+
+[Fixed Viewport] - DONE
+Left-clicking and moving should not move the view port. The view port will be fixed to
+zero to the maximums on both axis.
+
+[Shift Graph] - DONE
+Ctrl+Left-clicking a signal and moving the mouse should shift a signal by a constant
+value.
+
+[Selection Zoom] - DONE
+Left-clicking and dragging over a certain area will zoom the viewport to that spot.
+There should be a button that resets the viewport to its original state.
+Right-clicking resets the viewport.
+
+[Time Units Correction] - DONE
+Frequence to minutes. 1 / f * X Axis Multiplier.
+
+[Y Axis Units] - DONE
+Units are currently too large. Y Axis Multiplier must be factored in when storing the data.
+
+[Swap Controls] - DONE
+Zoom <-> Moving
+
+[Different Color on Signal Load] - DONE
+Preset list of colors to cycle through.
+
+[Visualize Signal Selection] - DONE
+Bolden the area around the plot. Use ItemSelectable.
+
+[Scale Amplitude] - DONE
+Left clicking to select a signal and scrolling will increase the actual amplitude (y values)
+of a signal. This only applies to the selected signal.
+
+[Qt Static Lib] - DONE
+Rebuild Qt to be a static library.
+
+[CDF Writing] - DONE
+Along side the reader, if necessary for resaving, a writer needs to be implemented
+as well. It is possible to implement this in the reader class and rename the original
+class, or create a parallel class that can take the reader as a parameter. The first,
+though, seems to be the most practical approach.
+
+[Update VS] - DONE
+Update Visual Studio to Service Pack 2012.
+
+[Fix Qt Name] - DONE
+Make sure the naming of Qt is the same in the Add-in on multiple machines.
+Named changed to Qt 4.8.4 Visual Studio x86 Static Library.
+
+[Data Truncation] - DONE
+Values of -x should be truncated.
+
+[Fix Signal Removal] - DONE
+The mapping of the removal is currently incorrect. Make sure to adjust it so that
+it works as intended. 
+Update: As suspected, the migration back to 4.8.4 has lent itself to a minor problem.
+The implementation of the QString class is slightly different in that the return of
+.toStdString() has some unknown differences when compared to the original C-String
+that was passed. It is possible there are different escape characters in the string
+that have been added.
+
+[Backup by TimeStamp] - DONE
+Perform backup and stamp the time at the end of the file.
+Also, save the backups in a "Backup" folder.
+
+[Color Code List] - DONE
+Add colors to the items in the signal list to indicate which plot they belong to.
+Items should now be added with an extra column in each. Only the text color of the
+first column should be changed to match that of the plot. Use the mapping of plot
+data to obtain the color. Also remember to change the color when the config for
+each signal is updated.
+
+[Add Filename Column] - DONE
+Add a new column in the signal listings that show the file names each signal was
+loaded with. Make sure to map them with the signal names.
+
+[Change Keys to Filenames] - DONE
+Change the hash table keys to be the file names instead of the signal names.
+
+[Change Color Order] - DONE
+First four colors should be Red, Blue, Green, and Black.
+
+[Remember Directory] - DONE
+Remember the last opened directory. Save it to the registry as well.
+
+[Multiselect Remove] - DONE
+Allow the removal of multiple files.
+
+[Fix Graph Bounds] - DONE
+The top and right margins should be ignored for the selection zoom.
+
+[Arrow Keys to Move Graph] - DONE
+Allow the use of arrow keys to move signals. Use the pixelToCoord() conversion to
+shift the plot a certain number of coordinates. Have settings in the preference
+window.

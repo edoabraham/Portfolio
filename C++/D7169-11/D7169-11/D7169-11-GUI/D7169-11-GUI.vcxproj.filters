@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{712aa09b-972c-47af-b7a1-013412c1e0d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies">
+      <UniqueIdentifier>{dc09774f-7c6c-4997-a1fd-3e158a834a95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\CustomPlot">
+      <UniqueIdentifier>{bae9d3f5-d6ab-425f-ad58-e1942042edcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\Resource Files">
+      <UniqueIdentifier>{31ab3c7f-8c61-4917-b65e-3ef06e6fda89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphs">
+      <UniqueIdentifier>{113a54d5-98bf-4cb6-95d7-01a463dbc491}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Program">
+      <UniqueIdentifier>{350faa5c-7888-417f-869c-ae29b44f136e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI Form Extensions">
+      <UniqueIdentifier>{2c6c4cc1-e8f1-41d5-a1d7-13c8a9c47ca9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Dependencies\Generated Files\Debug">
+      <UniqueIdentifier>{94102f42-5cfc-48c0-b873-62b1a5017fc6}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Dependencies\Generated Files\Release">
+      <UniqueIdentifier>{6043b288-8f78-4b21-b0dc-e61d6f6d12d8}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{2cf3dd67-55a9-4e58-98f4-b3dc358b77cf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="ConfigureUI.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="mainui.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="SignalList.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="mainui.h">
+      <Filter>Program</Filter>
+    </CustomBuild>
+    <CustomBuild Include="qcustomplot.h">
+      <Filter>Dependencies\CustomPlot</Filter>
+    </CustomBuild>
+    <CustomBuild Include="mainui.qrc">
+      <Filter>Dependencies\Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="PreferenceUI.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SignalPlot.cpp">
+      <Filter>Graphs</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Program</Filter>
+    </ClCompile>
+    <ClCompile Include="mainui.cpp">
+      <Filter>Program</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_mainui.cpp">
+      <Filter>Dependencies\Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_mainui.cpp">
+      <Filter>Dependencies\Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigureUIEX.cpp">
+      <Filter>UI Form Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="MainUIClassEX.cpp">
+      <Filter>UI Form Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="SignalListEX.cpp">
+      <Filter>UI Form Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="qcustomplot.cpp">
+      <Filter>Dependencies\CustomPlot</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qcustomplot.cpp">
+      <Filter>Dependencies\Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qcustomplot.cpp">
+      <Filter>Dependencies\Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Dependencies</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_mainui.cpp">
+      <Filter>Dependencies\Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorPicker.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Util.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SignalPlot.h">
+      <Filter>Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph.h">
+      <Filter>Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigureUIEX.h">
+      <Filter>UI Form Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="MainUIClassEX.h">
+      <Filter>UI Form Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="SignalListEX.h">
+      <Filter>UI Form Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Dependencies</Filter>
+    </ClInclude>
+    <ClInclude Include="QCustomPlotEX.h">
+      <Filter>Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorPicker.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Util.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_PreferenceUI.h">
+      <Filter>Dependencies\Generated Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="D7169-11-GUI.rc">
+      <Filter>Dependencies</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

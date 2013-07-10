@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Simulation", "Simulation\Simulation.vcxproj", "{431160CF-1DDB-4654-8298-F7846537FB92}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevNotes", "DevNotes", "{3814D92A-88E0-4B3A-A10E-94A7E3CD8642}"
+	ProjectSection(SolutionItems) = preProject
+		DevNotes\COMPLETED.txt = DevNotes\COMPLETED.txt
+		DevNotes\dat.asc.txt = DevNotes\dat.asc.txt
+		DevNotes\TODO.txt = DevNotes\TODO.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{D1718E8F-809F-4071-90BC-C4391195DF23}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimulationTest", "UnitTests\SimulationTest\SimulationTest.vcxproj", "{D612007C-AA50-40B7-8AA6-C6C36A8BA752}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ASCReaderTest", "UnitTests\ASCReaderTest\ASCReaderTest.vcxproj", "{60DD8C23-78E2-4908-A06E-E24D3170A89E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Program", "Program", "{60719DFC-4B5F-4C44-A5A9-A2194E795ACA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "D7169-11-GUI", "D7169-11-GUI\D7169-11-GUI.vcxproj", "{7F64D71A-FB3A-43D9-A2D8-721BA5AF64EF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GUITest", "UnitTests\GUITest\GUITest.vcxproj", "{B12702AD-ABFB-343A-A199-8E24837244A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{81AEFBD8-725E-451C-9425-B4A0DE129EAC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NetCDF-C++", "NetCDF-C++\NetCDF-C++.vcxproj", "{32FA9A74-0AE3-4ECD-B03A-135B6C44798D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{431160CF-1DDB-4654-8298-F7846537FB92}.Debug|Win32.ActiveCfg = Debug|Win32
+		{431160CF-1DDB-4654-8298-F7846537FB92}.Debug|Win32.Build.0 = Debug|Win32
+		{431160CF-1DDB-4654-8298-F7846537FB92}.Release|Win32.ActiveCfg = Release|Win32
+		{431160CF-1DDB-4654-8298-F7846537FB92}.Release|Win32.Build.0 = Release|Win32
+		{D612007C-AA50-40B7-8AA6-C6C36A8BA752}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D612007C-AA50-40B7-8AA6-C6C36A8BA752}.Debug|Win32.Build.0 = Debug|Win32
+		{D612007C-AA50-40B7-8AA6-C6C36A8BA752}.Release|Win32.ActiveCfg = Release|Win32
+		{D612007C-AA50-40B7-8AA6-C6C36A8BA752}.Release|Win32.Build.0 = Release|Win32
+		{60DD8C23-78E2-4908-A06E-E24D3170A89E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{60DD8C23-78E2-4908-A06E-E24D3170A89E}.Debug|Win32.Build.0 = Debug|Win32
+		{60DD8C23-78E2-4908-A06E-E24D3170A89E}.Release|Win32.ActiveCfg = Release|Win32
+		{60DD8C23-78E2-4908-A06E-E24D3170A89E}.Release|Win32.Build.0 = Release|Win32
+		{7F64D71A-FB3A-43D9-A2D8-721BA5AF64EF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7F64D71A-FB3A-43D9-A2D8-721BA5AF64EF}.Debug|Win32.Build.0 = Debug|Win32
+		{7F64D71A-FB3A-43D9-A2D8-721BA5AF64EF}.Release|Win32.ActiveCfg = Release|Win32
+		{7F64D71A-FB3A-43D9-A2D8-721BA5AF64EF}.Release|Win32.Build.0 = Release|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Debug|Win32.Build.0 = Debug|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|Win32.ActiveCfg = Release|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|Win32.Build.0 = Release|Win32
+		{32FA9A74-0AE3-4ECD-B03A-135B6C44798D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{32FA9A74-0AE3-4ECD-B03A-135B6C44798D}.Debug|Win32.Build.0 = Debug|Win32
+		{32FA9A74-0AE3-4ECD-B03A-135B6C44798D}.Release|Win32.ActiveCfg = Release|Win32
+		{32FA9A74-0AE3-4ECD-B03A-135B6C44798D}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{431160CF-1DDB-4654-8298-F7846537FB92} = {60719DFC-4B5F-4C44-A5A9-A2194E795ACA}
+		{7F64D71A-FB3A-43D9-A2D8-721BA5AF64EF} = {60719DFC-4B5F-4C44-A5A9-A2194E795ACA}
+		{D612007C-AA50-40B7-8AA6-C6C36A8BA752} = {D1718E8F-809F-4071-90BC-C4391195DF23}
+		{60DD8C23-78E2-4908-A06E-E24D3170A89E} = {D1718E8F-809F-4071-90BC-C4391195DF23}
+		{B12702AD-ABFB-343A-A199-8E24837244A3} = {D1718E8F-809F-4071-90BC-C4391195DF23}
+		{32FA9A74-0AE3-4ECD-B03A-135B6C44798D} = {81AEFBD8-725E-451C-9425-B4A0DE129EAC}
+	EndGlobalSection
+EndGlobal

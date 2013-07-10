@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="FileReader">
+      <UniqueIdentifier>{3549dcbc-8d13-449a-9fb9-2dc5e94916e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileReader\dat.rpk">
+      <UniqueIdentifier>{b44e8efa-fb20-44a5-a69b-7dfc056c1b7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies">
+      <UniqueIdentifier>{8fa1e7e4-0d63-45fb-a19d-50d1e4810b05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\Gamma">
+      <UniqueIdentifier>{0d335806-e1a8-4be7-a6f0-a6524e6d18b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileReader\dat.sav">
+      <UniqueIdentifier>{14e0403d-b393-4ecf-a812-6cd781aec751}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileReader\dat.snp">
+      <UniqueIdentifier>{b0c5dc07-0f2d-43de-b100-6d5a0f542ff9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileReader\dat.cle">
+      <UniqueIdentifier>{ef5333d9-2fbb-46a1-bb50-46c8d7767872}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Gamma\Gamma.h">
+      <Filter>Dependencies\Gamma</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Dependencies</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Dependencies</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities.h">
+      <Filter>Dependencies</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>Dependencies</Filter>
+    </ClInclude>
+    <ClInclude Include="DataFile.h">
+      <Filter>FileReader</Filter>
+    </ClInclude>
+    <ClInclude Include="DataSnapshot.h">
+      <Filter>FileReader\dat.snp</Filter>
+    </ClInclude>
+    <ClInclude Include="DataRPK.h">
+      <Filter>FileReader\dat.rpk</Filter>
+    </ClInclude>
+    <ClInclude Include="DataSavepoint.h">
+      <Filter>FileReader\dat.sav</Filter>
+    </ClInclude>
+    <ClInclude Include="DataCollisionEnergy.h">
+      <Filter>FileReader\dat.cle</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Gamma\Gamma.cpp">
+      <Filter>Dependencies\Gamma</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Dependencies</Filter>
+    </ClCompile>
+    <ClCompile Include="DataSnapshot.cpp">
+      <Filter>FileReader\dat.snp</Filter>
+    </ClCompile>
+    <ClCompile Include="DataRPK.cpp">
+      <Filter>FileReader\dat.rpk</Filter>
+    </ClCompile>
+    <ClCompile Include="DataSavepoint.cpp">
+      <Filter>FileReader\dat.sav</Filter>
+    </ClCompile>
+    <ClCompile Include="DataCollisionEnergy.cpp">
+      <Filter>FileReader\dat.cle</Filter>
+    </ClCompile>
+    <ClCompile Include="DataFile.cpp">
+      <Filter>FileReader</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

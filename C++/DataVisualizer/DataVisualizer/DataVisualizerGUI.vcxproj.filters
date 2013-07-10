@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Dependencies">
+      <UniqueIdentifier>{83a68cb3-bb34-46ec-b089-4b7f3605294a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Dependencies\Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Dependencies\Generated Files\Debug">
+      <UniqueIdentifier>{50ca6be1-f0dc-426a-9f13-e901813ee965}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Dependencies\Generated Files\Release">
+      <UniqueIdentifier>{c1d1c511-dbd0-4a19-929b-ed57efd040f5}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Graphs">
+      <UniqueIdentifier>{46e02d14-12ea-4caf-bdd2-661f97b02cc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI Form Extensions">
+      <UniqueIdentifier>{41f60809-f101-4d1f-85ea-a2acbfba3ded}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Program">
+      <UniqueIdentifier>{d84265dc-c5e5-4aa3-9741-edef827a8f29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Settings">
+      <UniqueIdentifier>{b5f1ccee-838d-4bc9-8745-a3a79df77a44}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_DataVisualizerGUI.h">
+      <Filter>Dependencies\Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_FileLoadUI.h">
+      <Filter>Dependencies\Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_StartupUI.h">
+      <Filter>Dependencies\Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DensityVsRadius.h">
+      <Filter>Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph.h">
+      <Filter>Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Dependencies</Filter>
+    </ClInclude>
+    <ClInclude Include="TemperatureVsRadius.h">
+      <Filter>Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="WallRadiusVsTime.h">
+      <Filter>Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="IonizationVsRadius.h">
+      <Filter>Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleDistributionPlot.h">
+      <Filter>Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="Configuration.h">
+      <Filter>Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="StringResource.h">
+      <Filter>Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionEnergyPlot.h">
+      <Filter>Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="DataVisualizerGUIEX.h">
+      <Filter>UI Form Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="StartupUIEX.h">
+      <Filter>UI Form Extensions</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DataVisualizerGUI.cpp">
+      <Filter>Dependencies\Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DataVisualizerGUI.cpp">
+      <Filter>Dependencies\Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GraphGL.cpp">
+      <Filter>Dependencies\Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GraphGL.cpp">
+      <Filter>Dependencies\Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qcustomplot.cpp">
+      <Filter>Dependencies\Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qcustomplot.cpp">
+      <Filter>Dependencies\Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="DataVisualizerGUI.cpp">
+      <Filter>Graphs</Filter>
+    </ClCompile>
+    <ClCompile Include="DensityVsRadius.cpp">
+      <Filter>Graphs</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Dependencies</Filter>
+    </ClCompile>
+    <ClCompile Include="TemperatureVsRadius.cpp">
+      <Filter>Graphs</Filter>
+    </ClCompile>
+    <ClCompile Include="IonizationVsRadius.cpp">
+      <Filter>Graphs</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Program</Filter>
+    </ClCompile>
+    <ClCompile Include="qcustomplot.cpp">
+      <Filter>Dependencies</Filter>
+    </ClCompile>
+    <ClCompile Include="WallRadiusVsTime.cpp">
+      <Filter>Graphs</Filter>
+    </ClCompile>
+    <ClCompile Include="Configuration.cpp">
+      <Filter>Settings</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="FileLoadUI.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DataVisualizerGUI.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="StartupUI.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DataVisualizerGUI.h">
+      <Filter>Graphs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GraphGL.h">
+      <Filter>Graphs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="qcustomplot.h">
+      <Filter>Dependencies</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DataVisualizerUI.qrc">
+      <Filter>Dependencies\Resource Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

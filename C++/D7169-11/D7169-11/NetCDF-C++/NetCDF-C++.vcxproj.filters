@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ncAtt.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncByte.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncChar.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncCheck.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncCompoundType.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncDim.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncDouble.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncEnumType.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncException.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncFile.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncFloat.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncGroup.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncGroupAtt.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncInt.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncInt64.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncOpaqueType.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncShort.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncString.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncType.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncUbyte.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncUint.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncUint64.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncUshort.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncVar.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncVarAtt.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ncVlenType.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ncAtt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncByte.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncChar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncCheck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncCompoundType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncDim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncDouble.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncEnumType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncFloat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncGroup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncGroupAtt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncInt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncInt64.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncOpaqueType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncShort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncUbyte.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncUint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncUint64.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncUshort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncVar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncVarAtt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ncVlenType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,47 @@
+TODO:
+
+[Subtraction]
+Selecting a signal and pressing Ctrl and pressing a blank will result in subtraction.
+The original two signals will no longer be displayed but will still reside in memory.
+Undoing the action will allow them to appear again whilst deleting the difference.
+
+[Add Legend]
+Add a legend to distinguish different signals.
+
+[Integration]
+Selecting a signal and clicking "Integrate" will calculate the integral of that signal.
+Note: Read carbon table.
+
+[Export]
+The ability to save the work environment so that it can be reloaded later. This should
+include all signals, tables, integrals, and other results. The implementation should
+incorporate a polymorphic hierarchy with a static mother container.
+
+[Saving]
+Saving individual signals should be possible. 
+
+[Status Bar]
+Label bar at the bottom that displays events that are happening in the app.
+
+[Disable Bold]
+Allow the option to disable boldfacing in a new preference box. Preference settings will
+save to registry.
+
+[Scroll Bar on Zoom]
+Add a when zoomed in on a selection. Both axis. Calculate a temporal max and min for
+each axis that is scaled by the pixelToCoord() method. Make a method in the main
+form that will increment or decrement the viewport's lower and upper ranges. Call
+a replot() after each increment or decrement. The implementation of the calculations
+for the scroll should be in QCustomPlotEX.
+
+[Add Registry Entry]
+Add registry entry for system configurations for the app. The configurations should
+include the last window size used and the various small tweaks like turning bold
+on or off. Use platform independent QSettings to achieve this.
+
+[Add Recent List]
+Add a listing of recent files that were opened. Save this information to the system
+registry.
+
+[Undo Commands]
+Add the ability to undo a command or action by a user.

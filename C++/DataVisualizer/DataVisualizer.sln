@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DataVisualizerGUI", "DataVisualizer\DataVisualizerGUI.vcxproj", "{7F64D71A-FB3A-43D9-A2D8-721BA5AF64EF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Simulation", "Simulation\Simulation.vcxproj", "{B2C19178-F893-40C0-BF48-C0B807A50124}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevNotes", "DevNotes", "{781F9870-0192-4E1D-A733-75B3B3EE84A3}"
+	ProjectSection(SolutionItems) = preProject
+		DevNotes\TODO.txt = DevNotes\TODO.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Program", "Program", "{1918EC07-F0AF-48ED-B8BF-6F78E6590F9A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{FEB92840-2FC7-4632-866E-860E3F8A82B6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DataSnapshotTest", "UnitTests\DataSnapshotTest\DataSnapshotTest.vcxproj", "{C0162CB6-5314-4278-88FE-A4B360ACC3CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7F64D71A-FB3A-43D9-A2D8-721BA5AF64EF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7F64D71A-FB3A-43D9-A2D8-721BA5AF64EF}.Debug|Win32.Build.0 = Debug|Win32
+		{7F64D71A-FB3A-43D9-A2D8-721BA5AF64EF}.Release|Win32.ActiveCfg = Release|Win32
+		{7F64D71A-FB3A-43D9-A2D8-721BA5AF64EF}.Release|Win32.Build.0 = Release|Win32
+		{B2C19178-F893-40C0-BF48-C0B807A50124}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B2C19178-F893-40C0-BF48-C0B807A50124}.Debug|Win32.Build.0 = Debug|Win32
+		{B2C19178-F893-40C0-BF48-C0B807A50124}.Release|Win32.ActiveCfg = Release|Win32
+		{B2C19178-F893-40C0-BF48-C0B807A50124}.Release|Win32.Build.0 = Release|Win32
+		{C0162CB6-5314-4278-88FE-A4B360ACC3CF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C0162CB6-5314-4278-88FE-A4B360ACC3CF}.Debug|Win32.Build.0 = Debug|Win32
+		{C0162CB6-5314-4278-88FE-A4B360ACC3CF}.Release|Win32.ActiveCfg = Release|Win32
+		{C0162CB6-5314-4278-88FE-A4B360ACC3CF}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B2C19178-F893-40C0-BF48-C0B807A50124} = {1918EC07-F0AF-48ED-B8BF-6F78E6590F9A}
+		{7F64D71A-FB3A-43D9-A2D8-721BA5AF64EF} = {1918EC07-F0AF-48ED-B8BF-6F78E6590F9A}
+		{C0162CB6-5314-4278-88FE-A4B360ACC3CF} = {FEB92840-2FC7-4632-866E-860E3F8A82B6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		Qt5Version = Qt 4.8.4 Visual Studio 2012 x86 Static Library
+	EndGlobalSection
+EndGlobal

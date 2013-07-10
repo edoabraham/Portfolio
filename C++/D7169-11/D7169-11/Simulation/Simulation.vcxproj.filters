@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="FileReader">
+      <UniqueIdentifier>{b382c8ac-b10b-497a-ab98-d8e99c9f554d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileReader\dat.asc">
+      <UniqueIdentifier>{08979aef-55c8-4ab7-a1ca-f12b3145780d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileReader\net.cdf">
+      <UniqueIdentifier>{c2c2b1d4-e492-4a9a-ae0d-201599810c08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies">
+      <UniqueIdentifier>{3f46f39e-cf90-438e-a18a-6af2c1a9f774}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainDLL">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Dependencies</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Dependencies</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation.h">
+      <Filter>MainDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="DataASCII.h">
+      <Filter>FileReader\dat.asc</Filter>
+    </ClInclude>
+    <ClInclude Include="DataFile.h">
+      <Filter>FileReader</Filter>
+    </ClInclude>
+    <ClInclude Include="DataCDF.h">
+      <Filter>FileReader\net.cdf</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Simulation.cpp">
+      <Filter>MainDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>MainDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Dependencies</Filter>
+    </ClCompile>
+    <ClCompile Include="DataASCII.cpp">
+      <Filter>FileReader\dat.asc</Filter>
+    </ClCompile>
+    <ClCompile Include="DataCDF.cpp">
+      <Filter>FileReader\net.cdf</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

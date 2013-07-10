@@ -1,0 +1,46 @@
+Format cdf
+Written by Jesse Z. Zhong
+Tools: HxD Hex Editor & ASCII Table
+
+Notes:
+CDF is a properly formed binary file that exhibits specific patterns;
+Sections of information are clearly divide by zero-padded sections, 
+organized in groups of four octets, and follow common header styles.
+
+Symbols act the same way strings are normally stored: The length is
+specified in the first four octets, then followed by the string itself.
+In this case, it is important to know that the actual length is the
+stated length rounded up (ceil) to the nearest four octet.
+Example: Length = 14 -> Actual length = 16
+
+Start	End		Size	Description
+0x00	0x02	3		File type - "CDF"
+0x03	0x03	1		SOH (start of heading) character - ASCII 0x01
+
+0x10	0x13	4		Size of the following symbol:	0x0E (14)
+0x14	0x21	14		Symbol "_2_byte_string"
+0x24	0x27	4		Value of "_2_byte_string":		0x02 (2)
+
+0x28	0x2B	4		Size of the following symbol:	0x0E (14)
+0x2C	0x37	14		Symbol "_8_byte_string"
+0x3C	0x39	4		Value of "_8_byte_string";		0x08 (8)
+
+0x40	0x43	4		Size of the following symbol:	0x0F (15)
+0x44	0x52	15		Symbol "_16_byte_string"
+0x54	0x57	4		Value of "_16_byte_string":		0x10 (16)
+
+0x58	0x5B	4		Size of the following symbol:	0x0F (15)
+0x5C	0x6A	15		Symbol "_64_byte_string"
+0x6C	0x6F	4		Value of "_64_byte_string":		0x40 (64)
+
+0x70	0x73	4		Size of the following symbol:	0x10 (16)
+0x74	0x83	16		Symbol "_128_byte_string"
+0x84	0x87	4		Value of "_128_byte_string":	0x80 (128)
+
+0x88	0x8B	4		Size of the following symbol:	0x10 (16)
+0x8C	0x9B	16		Symbol "_255_byte_string"
+0x9C	0x9F	4		Value of "_255_byte_string"":	0xFF (255)
+
+0x100	0x103	4		Size of the following symbol:	0x0B (11)
+0x104	0x10C	11		Symbol "peak_number"
+0x110	0x113	4		Value of "peak_number":			0xE3 (227)
