@@ -1,0 +1,6 @@
+[submodule "C++/D7169-11"]
+	path = C++/D7169-11
+	url = https://jessezhong@bitbucket.org/jessezhong/d7169-11.git
+[submodule "C++/DataVisualizer"]
+	path = C++/DataVisualizer
+	url = https://jessezhong@bitbucket.org/jessezhong/datavisualizer.git
