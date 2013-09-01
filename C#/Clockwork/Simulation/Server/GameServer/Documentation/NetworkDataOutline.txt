@@ -1,0 +1,85 @@
+﻿Deciphering and Delegating [Depreciated]
+~Client to Server~
+
+[Received Periodically]
+Player Input (Two Separate Streams)
+Mouse target point 2D Vector (will only be sent by the client when the player clicks the move button).
+<Class> : MDTargetInput
+
+Keyboard inputs for spells, sent as a flag. (Sent only when the player presses a button.
+<Class> : MDSpellInput
+
+[Received Periodically]
+Key Bindings
+If there are any changes, they will be received and dealt with.
+Client will request changes first from the server. As soon as they are set, 
+the server will send a confirmation to the Client to let it know it can enact the changes for itself.
+<Class> : MDRequestKeyBindingChange
+
+[Received Periodically]
+Player Messages
+Recieves player message strings and their intended targets.
+<Class> : MDMessage
+
+Aggregating and Serializing
+~Server to Clients~
+
+[Sent Periodically]
+[Sent to a Single Client]
+Player Position & Objects within Player's Field of Vision
+2D Vector of where the Player is currently.
+FoV is what the player can see; the rest is the Fog of War.
+Other players, enemies, environment objects, and spells are the objects needed to be sent.
+Information like player and npc/monster items, score, and stats (Attack, HP, & MP).
+Mapcell Changes are also sent with this update.
+Portion (lead) sections with a delimiter.
+<Class> : MDWorldUpdate
+
+[Sent when a Player hits 0 HP]
+[Sent to a Single Client]
+Player Death
+Informs the player's client that the player has died.
+This will trigger the death event for client side: Character death animations, locking player's movement and combat controls for a designated time.
+Death is sent and the amount of time the player is dead for before they can resume normal gameplay.
+<Class> : MDPlayerDeath
+
+[Sent when a Player or Boss hits 0 HP]
+[Broadcasted]
+Character Death
+Informs everyone that a certain boss or player has been killed and which character or monster landed the killing blow.
+Name of the killer and the name of the deceased. If player's FoV has the enemy that died in it, the client will play the death animation for that character.
+<Class> : MDCharacterDeath
+
+[Sent Once at Load]
+[Broadcast]
+Characters and Spells
+Characters that each player is playing and the corresponding ID's of the player are sent to everyone on load.
+The Auxiliary Spells are also sent on load.
+<Class> : MDLoadoutInfo
+
+[Sent Once at Load]
+[Sent to Single Client]
+Fog of War Objects
+Store info on what the player can "see" out in the FoW. In the event that the player's client disconnects or crashes, the information can be sent again.
+This stuff only contains mapcells that have changed over the course of the match which the player has visibly seen changed.
+It should be loaded on load screen.
+<Class> : MDFogOfWarInfo
+
+[Sent at Load and whenever called by Client]
+[Sent only to a Single Client]
+Key Bindings
+Sent at the beginning of the match so the client knows which input events to look out for. Called again when the player wishes to alter keybindings.
+Send the whole set that will then be saved onto client side.
+<Class> : MDSendKeyBindings
+
+[Sent when Key Binding changes were Successful]
+[Sent only to a Single Client]
+Key Bind Change Confirmation
+Sends a true or false confirmation to the Client to inform the Client if the Keybinding changes were made.
+<Class> : MDConfirmKeyBindingChange
+
+[Sends only when a Message is Received from a Client]
+[Selective Broadcast]
+Broadcast Player Messages
+Sends a message to the targeted clients.
+<Class> : MDMessage

@@ -1,0 +1,43 @@
+﻿[ Clockwork Unity ]
+Authored by Jesse Z. Zhong
+
+[ Change Log ]
+
+Character Rotation :
+	Character rotation only occurs when movement is procured through mouse clicking. 
+	Otherwise, the character will not attempt to face the mouse.
+
+Added Target Location Threshold :
+	Created a acceptable Treshold that ensures the character will stop moving, or 
+	rather stop playing the animation, when it reaches an acceptable area about
+	the targeted location. This way the character will not overshoot the targeted
+	area and will make a complete stop.
+
+Camera Tweaking :
+	Camera now centers properly about the player's character. This is done by allowing
+	the Camera to create and manage it's own target GameObject. The object then is
+	synced with the player's character's position. Also, the camera can do a test
+	for it's expected location using Raycasting to ensure the transformation of the
+	camera is correct.
+	Rotation of the camera now follows Lerp. Pitching as well as zooming are now possible.
+	Also, a height offset is applied to target position in order to center the camera
+	about the upper body of the character.
+
+Walking Animations :
+	Walking animations now sync up to walking/running speeds of characters. This will
+	allow for animations to look more realistic (no sliding) as a character's movement
+	speed varies. This means buffs, debuffs, stat changes will all have direct influence
+	on the animation speed of running/walking animations.
+
+Movement Control Registration :
+	Corrected the Control System to register target positions for movement only when
+	the mouse is clicked. The character will also continue to move on its own until
+	it reaches its destination. Holding down the mouse button will still all the 
+	player to constantly update and manuever the character.
+
+[ Todo ]
+
+Sync Actions :
+	Actions and attacks need to syncronized so that they start, play through, end,
+	and inform the system to continue onto another state. Actions should also be
+	capable of being interrupted as well.

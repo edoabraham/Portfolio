@@ -1,0 +1,361 @@
+3.8.2013
+The networking "model", if you can call it that, is a little messy. It relies on one system that maintains 
+its connection to all of the clients. As a result, every new system you add that needs updating over the 
+network requires you to add another entry into the system and communicate those changes to the new system 
+that's doing the calculations, managing, etc. The translating of the information from the new system and 
+seralizing is also forced onto the network system. This design can cause for a lot of problems as more changes 
+are made and new stuff is added. Essentially, it breaks concepts and rules of abstraction and modularity.
+
+Idealy, we need put in place a model where each system that needs updating with the network has a code 
+section dedicated to translating and serializing. That finished product can be then automatically passed 
+onto the network system to be queued up and sent out. This needs to be done with none or very little 
+intermediate objects used to communicate this information between a system and the network system.
+
+Though it might be a non-issue, there might be a problem with the priority of some systems, since there 
+are multiple systems, over others as to how often and in which order those system's information needs to 
+be queued to be sent out.
+
+3.10.2013
+So I discovered that the obvious solutions is delegates and events. The idea here will be to either 
+provide support upfront when needed or to create a wrapper class for the Entity Systems and have systems 
+that specifically handle updating. I find the latter method more appealing as it does add a layer of necessary 
+abstraction. However, it may be confusing to understand for some one reading through the first time.
+
+Here is the proceedure for going from data to packets (we'll use character position as an example):
+We'll start with the NetworkEntityProcessingSystem...
+The NetworkEntityProcessingSystem checks for the required type: ClientManager.
+It then checks for the Transform component. When that is found, it will localized the data of both components.
+
+After this it will call the implemented virtual method for translating the position into a NetEvent
+that we wish to send over the network stream, via, of course, the NetworkProcessingSystem.
+
+The resulting data, the NetEvent, is then loaded onto an implemented delegate. This part is key.
+The delegate is then queued into the NetworkProcessingSystem where it awaits to be handled by the
+System. After it is handled, the delegate deletes itself from the queue or Event. This cycle will
+be repeated for all ClientManager entities.
+
+End Example.
+
+This is okay for all information relevant to a particular client. It doesn't, however, inform each
+client about other clients and their information, or even other objects in the game itself.
+
+This is where the WorldUpdate System will differ... only slightly. It will use an IntervalEntitySystem
+and implement the ProcessEntities method instead, much like the Collision system. It do a "radar" scan
+and sweep with a given radius about the center of a position owned by the Entity. The radar will
+iterate through all entities with Transform components to see which Entities fall within the perimeter
+of the radar area. Those entities will be listed up and translated like all other to-be NetEvents and
+sent over to the NetworkProcessingSystem.
+
+The radar distance should be customizable. This will allow for different ranges for Field of Views.
+An example would be reducing the radius for when a player is blinded.
+
+Also this second type of EntityProcessingSystem will be called NetworkEntityIndependentProcessingSystem - 
+a mouthful.
+
+The next problem will be handling global events. This includes stuff like "All Chat" messages, player
+deaths, and in-game announcements. 
+
+The broadcasting of the messages is the easy part; iterate through
+all the ClientManagers for a single queued message and prepare and send NetEvents for each client.
+For messages directed for a single client, iterate through all the clients to find the match and prepare
+and send the message the same way. Same for "Team Chat".
+
+The problem is the message queue. The server receives a message from a client or another server side entity,
+let's take the game management program that keeps track of all the game instance, the players, etc. and allows
+for Game Masters or whoever to make server-wide announcements, and then queues it up to be sent.
+
+This problem is directly connected to all other receiving processes where a NetEvent is received from a client
+and needs to be queued up and then handled on the server side. Stuff like player input falls into this 
+category.
+
+In the case of messages, the system has both the receiving and the sending tied together. Therefore a
+"two-way" delegate system is necessary in order to acommadate this.
+
+The last thing to tackle is the loadout information, specifically for the Fog of War. Since this event is
+only triggered when a player needs to load or reload the game, it will require a client side request
+before the information is sent over the network.
+
+The Fog of War information will be a component housed on the server side for each ClientManager Entity to 
+have. It will keep track of the changes of MapCells after they have fallen out of a player's Field of
+Vision. This information will only be sent on load or reload. The updating will then be the responsibility
+of the client. This is to ensure that the client knows what the map looks like outside the FoV (conversely,
+the FoW) and can draw it from the start. Also, it will allow for game mechanics, such as blinding, that will
+effectively reduce the players FoV for a temporal amount of time.
+
+3.12.2013
+After a lot, and I mean a A LOT, of research, I've decided that we will make the eventual move to UDP/IP in
+terms of network protocol. It is a MUST. But in the meantime we are creating a game and not just a network
+system, so the focus will be on making the game work, adding some interesting features, etc. When that is
+set in place, we can focus on revamping our networking; we just need a framework to build around and then
+we'll substitute parts of the frame work, in this case TCP replaced by UDP. Right now I hope we can maintain
+the level of abstraction and heuristics so that the switch will be seemless, even for the backend. That is
+the end game.
+
+As a result of this, I will be very strict in terms of how TCP "packets", or rather commands, will be structured.
+What I mean by this is that there will be a lot of critical thinking and effort involved to pick the right
+bit sizes and resolutions for all of our variables that will be sent with our future bit packet implementations
+over the UDP/IP network. This way when we make the switch, we can preserve all our systems in place and just
+"plug in" the new network.
+
+Speaking of networking, this next section I will talk about the how these bit packets will be structured for
+our major systems, primarily on player Loading information from the server on game initialization (client end)
+and World Updates for updating data in the background of a player's client and information in their immediate
+Field of Vision. You're gonna wanna pay attention.
+
+Loading, or what we'll refer to as Loadout from now on, is the initial step for a client wanting to join an
+existing Game Server. Whether this is the first contact attempt or an attempt to rejoin the session after
+disconnection (whether normal or abnormal), the procedures are still the same. Let's divide this into two
+addressable cases: Already connected web service and queued up for a CREATED match and reconnecting to web
+service with an account that is still in a game - New Game and Rejoining Game.
+
+New Game
+During this event a Game Server instance will be create by the webservice with the account information of each
+player queued up for that match as well as the IPEndPoint and other network information about the client each
+player is using to connect with.
+
+The server will then attempt to send individualized Loadout packages to each client. The information will then
+be loaded into each client's simulation, where it will be called upon during each World Update the client
+receives. After this a confirmation is sent to the server from the client acknowledging that the data has been
+received.
+
+If there is no confirmation after a certain amount of time, the server will attempt to resend. After a certain
+number of attempts, the server will assume that the "connection" to the client has timed out and drop the
+process. (Player will be left out of game.)
+
+That last part is the worst case senario that we will have to determine a solution for later.
+
+Rejoining Game
+After reconnecting to the web service, the service will inform the client that its logged in account is already
+in a match. If the player chooses to reconnect to that game, a packet will be sent to the server alerting the 
+service to move the client's connection over to the Game Server. During this time, the service will issue a
+command to the Game Server requesting that it send Loadout information to the client. The server will attempt
+to send until acknowledged or until it believes the client has timed out.
+
+For Both
+Client side: Upon receiving the Loadout packet, the client will load the UI for loading the game.
+
+Loadout Packet
+The packet will have the Name of each player, an ID assigned to each (probably the size of a nibble or as large
+as a byte since the plan is only 8 players on the map), as well as the ID of the character they are playing,
+the auxiliary spells they have chosen, and the perks each might have registered prior tot he match.
+
+The next section will be the data of the map. It will be the maptile states of every single cell within the
+FoG state.
+
+
+WorldUpdate Structure
+World update packet has two sections: The Persistent and the Temporal.
+Persistent is stuff that is in the game from the start of the match to the end. All that information is what is
+loaded on Loadout.
+Temporal is stuff like spells, map items, mobs, etc. This stuff can be created at any point in the game and 
+distroyed at any point in the game.
+
+There are some rules to follow when adding new things to this packet:
+Each new set of data needs be divisible by 8, the size of an octet/byte. No matter how many variables are being
+represented in that section or the resolution, all the sizes need to add up to a number that is divisible by 8.
+PERIOD! No exceptions.
+
+Persistent
+The server will know which client to send the information to because of the information it has on the ClientManager
+about each player and their client. This makes it unecessary to specify stuff like player number or character id.
+
+Player Position
+This will be Vector2 of a specific float resolution. Divisible by 8.
+It will always be the first thing to expect in this section.
+
+Characters in View
+This will have the ID of the player as well as the 
+
+Delimiter and/or Padding
+This this unique set of bits marks the end of the Persistent section. This will probably be an octet.
+
+Will return to this..
+
+3.13.2013
+Some brain storming...
+Turns out I might not need to resort to full on events in .Net. However, there needs to be a better way
+of abstracting the details of how stuff is being handled after data is translated into a NetEvent.
+
+First we have our NetEvent translating method. Let's call it translate with a return type of NetEvent
+and with a list of affecting entities being passed.
+
+public abstract NetEvent Translate(Bag<Entity> entities);
+
+Then we need to call a send method that will send the new NetEvent on creation. We'll call this method
+OnNetEventCreated.
+
+public void OnNetEventCreated(NetEvent netEvent) {
+	NetEventQueue.Enqueue(netEvent);
+}
+
+NetworkProcessingSystem
+protected Queue<NetEvent> NetEventQueue_;
+
+...
+
+Instead I've decided to having it all built into the translate and creation method and have the queuing
+code be a base implementation that will be called last.
+
+Base Code
+public virtual void CreateNetEvent(Bag<Entity> entities, NetEvent netEvent) {
+	NetEventQueue.Enqueue(netEvent);
+}
+
+public virtual void CreateNetEvent(ClientManager client, Bag<Entity> entities) {
+
+	// Creates a netEvent with infor from ClientManager
+	NetEvent netEvent = new NetEvent(
+	
+}
+
+public abstract NetEvent TranslateToNetEvent(
+
+...
+
+3.22.2013
+So right now I'm in the process of purging the old code for the network to accomadate UDP instead of TCP.
+For the most part this is fairly easy to do, simply replace the Socket type with a UDPClient. Awesome!
+
+What's becoming a problem is the custom header. Right now, writing the NetEventType is fine. Whether server
+or client, if they create a new NetEvent, they'll set a type that won't change unless asked to by accessor.
+
+The problem is the time. This should only be influenced by the game's time. It should also be the most 
+recent time. And this should be performed programmically in a way that lets both server and client use it
+without having to do pointless hacks that take away from the NetEvent class' abstractness.
+
+As a result, I believe the way to go is to allocate room for the time and change it on send. The ClientManager
+will then be the one to handle the time and have a reference to the GameTime for this sole purpose.
+
+What would be a good idea is to ping the client with the server time on connection, and have the client
+run its own instance of time. This way the time on the client can be adjusted periodically to preserve accuracy.
+
+2.26.2013
+So, I came to the sudden realization that the whole ClientManagers and multi-thread approach is completely...
+wrong. Honestly, I'm not sure why it took me so long to realize this, but it sure as hell was "funny" when
+it finally hit me.
+
+The reason:
+The whole reason that the ClientManager approach was used in the first place was to compensate for TCP's
+problem of blocking. Since TCP is a connection based protocol that relies on order, it waits for one step
+to be completed before following through with another. This will constantly jam up a server who is making
+multiple connections; if one client isn't responding, everything on the server comes to a complete halt
+and waits for that one client. This means every other client has to wait as well.
+
+What the multi-thread approach does is it creates separate threads for each client connection. These are
+housed in the ClientManager object, which is created for every new connection made, and maintained until
+that connection is broken. Great stuff on a structural level, but required too much finessing to incorporate
+into our framework and also requires WAY too much extra processing through extra threads and abstraction
+layers.
+
+Needless to say, I'm glad to let it go, even though it means a good deal of work over the passed few weeks
+will be scrapped.
+
+The design:
+To truly incorporate UDP, the packet listening portion will be a loop, or better yet a separate thread that
+solely listens for datagrams while the simulation is performing other tasks. This can be done with 
+Socket.BeginReceiveFrom, which according to the documentation, will set up a separate thread solely for
+receiving packets. Upon a packet arrival, it will call a method of choice asynchroniously. Great stuff.
+
+What I plan to do at this point is have this thread continually receive and queue up NetEvents. Then the
+ServerSystem, upon its periodic update, will process these packets and distribute them to other subsystems.
+Sounds great, I just hope it pans out.
+
+3.28.2013
+A lot of the revisions have been made at this point. 
+
+Iterative
+Upper bound n
+Lower bound 1
+1 <= n <= n
+Perform single call
+
+Check all through delegate
+All check, at least n
+
+4.8.2013
+Basic layout for the configuration of spells:
+
+ID (int) : Numeric identification
+Name (string) : Name of the spell, self explanatory
+
+Target (enum) : Decides who the spell has an effect for (allies, enemies, all, divided(separate effects for 
+enemies and allies))
+type (enum) : single (dies after hitting a single target) | group (affects everything it comes in contact 
+with until it dies or is cancelled out)
+
+This region may be repeated if "divided" is the Target.
+
+SelfStats (stats) : Influences how the spell will affect the player casting
+This can be used for stamina, health, and mana depletion. It can also be used for self healing or regening.
+BaseStats (stats) : Flat effects
+ScaleStates (stats) : Scaling with player's stats
+
+CastTime (long) : Time it takes for a spell to take effect
+CoolDown (long) : Time it takes to use spell again
+
+ChargeDuration (long) : 0 means no charging, non-zero means the player can hold the spell up to this length
+of time for a spell to have a maximum effect.
+ChargeBaseScaling (float) : Determines how well a spell's base effects scale with time
+ChargeScaleScaling (float) : Determines how well a spell's scale effects scale with time
+
+Collision and Spell AI will be hardcoded
+So, spells are more or less hardcoded and will search for their corresponding spell data when the sysem parses
+the data files on bootup.
+
+There should also be a command that reloads stats on server side as well as one that checks for online players.
+
+4.10.2013
+The spell system is directly related to the controller system. This way both players and npc's will have access 
+to it. As a result, messages in the form of delegates will be commumunicated between the two systems.
+
+...
+
+Infact, it might even be better to skip a step entirely and have the controller system be in charge of creating
+each spell.
+
+Some notes on the attack/spell system. The code for the EActions has been refractored to have only three
+relevant states: Idle, Attack, and Death.
+
+This is because the spell system needs to be variable as well as independent from general states. Free-form is
+one way to describe it. The reason being is there's a spell charging system involved as well as the possibility
+that a player will be clicking more than one spell at a time. This can cause confusion for the game as it is
+trying to handle these conflicting inputs.
+
+What I can do is have a mapping(list of KeyValuePairs, not dictionary) where each index is a spell input slot,
+the key is a boolean to indicate if it is active/pressed, and the value be and integer value with the amount
+of time that the key was held down.
+
+The spell system will handle an input as soon as the boolean returns false and there is a non zero value for the
+time that it has been held down. After it has been handled, the value will be zeroed by assignment.
+
+It's also possible to add a mechanic where holding a spell over its charge limit will slowly deplete the player's
+mana and/or stamina. This will penalize players for "perm(a" charging, which would result in gameplay imbalance.
+There will be a grace period after the limit is reached to allow a player time to release the spell.
+
+5.6.2013
+Some quick notes for spells, since there is a lot of timing that needs to be taken into account. My idea at the
+moment is have the client just send key presses in the form of flags. The server side parses it in the input
+system and loads the results into the player controller. The controller that handles spell instantiations will
+make the actual conscious decisions one whether a controller has met all the requirements for creating a certain
+spell.
+
+Such requirements will be mana and stamina costs and, more importantly, charge timings. This is a system that
+needs to be implemented now and implemented early as it will affect how new additions of spells are implemented
+later.
+
+Another thing to note is that this model can be used to apply to the Running mechanic: Input is sent from the
+client, translated in a system on the server side, loaded into the controller, and handled by the movement system.
+
+The issue here is establishing a time, or "threshold", where, if there isn't another input with the same request,
+that task will no longer be relevant. For Running this makes perfect sense. If after a while there is no more 
+player commands telling the character to keep running, the character will stop running. The behavior for spells,
+however, is not as clear cut. Do we want the player to continue charging even though there's no input that says,
+"Hey, I'm not holding that button anymore!" or do we want the charging to stop as soon as a time threshold is 
+reached and we haven't heard from the player up to that point. Either way, a threshold needs to be decided on and 
+also a time tracker needs to be set for the time between now and the last time the player sent input.
+
+Update:
+According to Drew, for the spells we should wait for new input instead of immediately cutting the charging off
+after a certain allotted time. His response: "yeah, fuck users" ~ Drew. Seems about right.
+
+Idea: Consume HP one overcharge release.

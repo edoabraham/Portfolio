@@ -1,0 +1,7 @@
+﻿Wrapper classes for additional functions and extensions to Artemis are 
+placed here.
+
+If you have any such additions, make sure to add them here and not alter
+the original library unless there are bugs or necessary fixes that need
+to be made to it. Make sure to notify everyone before these changes go
+live!

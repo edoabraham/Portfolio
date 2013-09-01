@@ -1,0 +1,4 @@
+﻿Artemis Project File
+Build Settings
+"Conditional compilation symbols: FULLDOTNET" removed for .NET3.5
+REVERTED

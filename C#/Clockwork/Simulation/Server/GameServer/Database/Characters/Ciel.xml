@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Character xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>1</ID>
+  <Name>Ciel</Name>
+  <Statistics>
+    <Health>840</Health>
+    <HealthRegen>64</HealthRegen>
+    <Mana>680</Mana>
+    <ManaRegen>40</ManaRegen>
+    <Stamina>720</Stamina>
+    <StaminaRegen>56</StaminaRegen>
+    <PhysicalDamage>210</PhysicalDamage>
+    <MagicalDamage>20</MagicalDamage>
+    <PhysicalDefense>10</PhysicalDefense>
+    <MagicalDefense>87</MagicalDefense>
+    <MovementSpeed>16</MovementSpeed>
+    <AttackSpeed>8</AttackSpeed>
+    <CastRate>0</CastRate>
+    <CoolDownRate>0</CoolDownRate>
+    <CriticalRate>0</CriticalRate>
+    <SightRange>24</SightRange>
+  </Statistics>
+  <Transform>
+    <Position>
+      <X>0</X>
+      <Y>0</Y>
+      <Z>0</Z>
+    </Position>
+    <Direction>
+      <X>0</X>
+      <Y>0</Y>
+      <Z>0</Z>
+    </Direction>
+  </Transform>
+  <Elemental>
+    <Element>Water</Element>
+  </Elemental>
+  <SpellList>
+    <ESpell>Ciel_Thrust</ESpell>
+    <ESpell>Ciel_Impale</ESpell>
+    <ESpell>Ciel_SnipeRecall</ESpell>
+    <ESpell>Ciel_BlockParry</ESpell>
+    <ESpell>Ciel_LungeDrift</ESpell>
+    <ESpell>Ciel_SirensSong</ESpell>
+  </SpellList>
+</Character>

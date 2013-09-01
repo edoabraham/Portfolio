@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CE9C0151-EE48-85F7-09F5-13249F31FA3E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace></RootNamespace>
+    <AssemblyName>UnityVS.Client.CSharp.Plugins</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <NoConfig>true</NoConfig>
+    <NoStdLib>true</NoStdLib>
+    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <MonoProfile>2.0</MonoProfile>
+    <UnityPath>C:\Program Files (x86)\Unity\Editor</UnityPath>
+    <MonoPath>$(UnityPath)\Data\Mono</MonoPath>
+    <LibraryAssembly>Assembly-CSharp-firstpass.dll</LibraryAssembly>
+    <TargetFrameworkDirectory>$(MonoPath)\lib\mono\$(MonoProfile)</TargetFrameworkDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_1_3;UNITY_4_1;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_1_3;UNITY_4_1;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib">
+      <HintPath>$(TargetFrameworkDirectory)\mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>$(TargetFrameworkDirectory)\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.XML">
+      <HintPath>$(TargetFrameworkDirectory)\System.XML.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <HintPath>$(TargetFrameworkDirectory)\System.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(UnityPath)\Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>$(UnityPath)\Data\Managed\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="artemis">
+      <HintPath>Assets\artemis.dll</HintPath>
+    </Reference>
+    <Reference Include="Bitverse.Unity.Gui">
+      <HintPath>Assets\bit-gui\Plugins\Bitverse.Unity.Gui.dll</HintPath>
+    </Reference>
+    <Reference Include="GameClient">
+      <HintPath>Assets\GameClient.dll</HintPath>
+    </Reference>
+    <Reference Include="GlobalData">
+      <HintPath>Assets\GlobalData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.CoreEx">
+      <HintPath>Assets\System.CoreEx.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Observable">
+      <HintPath>Assets\System.Observable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive">
+      <HintPath>Assets\System.Reactive.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading">
+      <HintPath>Assets\System.Threading.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Standard Assets\Camera Scripts\MouseLook.cs" />
+    <Compile Include="Assets\Standard Assets\Gem Rendering\Example\GemSpawner.cs" />
+    <Compile Include="Assets\Standard Assets\Scripts\ActivateTrigger.cs" />
+    <Compile Include="Assets\Standard Assets\Scripts\CombineChildren.cs" />
+    <Compile Include="Assets\Standard Assets\Scripts\MeshCombineUtility.cs" />
+    <Compile Include="Assets\Standard Assets\Water\Sources\WaterSimple.cs" />
+    <None Include="Assets\Artemis\ArtemisDevNotes.txt" />
+    <None Include="Assets\DeveloperNotes.txt" />
+    <None Include="Assets\Standard Assets\Gem Rendering\diamond shader.shader" />
+    <None Include="Assets\Standard Assets\Water\Sources\FX-Water Simple.shader" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2012\UnityVS.CSharp.targets" />
+</Project>

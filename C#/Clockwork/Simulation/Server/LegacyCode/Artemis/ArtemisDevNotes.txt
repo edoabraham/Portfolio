@@ -1,0 +1,13 @@
+﻿[ Artemis Dev Notes ]
+
+This is a rewrite of the original C# port written for .NET 4.0.
+
+Todo:
+Investigate a new way to support higher than 64 types of components.
+Possibly replace BigInteger (Int64) with BitArray.
+
+
+Changes:
+Updated to support 64 component types (how it was meant to be, originally).
+
+Draw Type is removed since everything is updated via UnityEngine's Update() and LateUpdate() methods.

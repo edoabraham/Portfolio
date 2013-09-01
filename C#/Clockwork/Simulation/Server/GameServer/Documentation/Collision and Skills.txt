@@ -1,0 +1,66 @@
+﻿[Clockwork]
+Collision and Skills Problem
+
+There is a little confusion of how certain collisions are handled.
+Examples of collsions with different behaviors:
+
+Character -> Character
+Basic collison. Wall effect. Character cannot push or shove the 
+other character. Static. In cases where characters are running at
+one another, both alternate being the receiver or the giver.
+Character (Making Contact) = Material
+Character (Receving Contact) = Material
+
+Range Skill (Single Target, Skillshot) -> Character
+If this skill makes contact with a character, there is no transformations.
+The skill will procure its effects and die when it makes contact with the
+first character it collides with.
+Skill  = No Material
+Character = Material
+
+Range Skill (AoE Targets, Skillshot) -> Character(s)
+This applies to traveling AoE's and Land Effects.
+The life of this skill lasts until its timer expires.
+During that time, all characters that stand or walk through the area
+will be affected by skill.
+Skill  = No Material
+Character = Material
+
+Range Skill (AoE Targets, Skillshot) -> Map Tile(s)
+Similar to the above.
+Effect timers on the tile will be constantly reset until the skill
+expires. Behavior is subject to change.
+Skill = No Material
+Map Tile = Material
+
+Normal Attack (AoE Targets, Centered from Source) -> Character(s)
+Technically this counts as a skill. It will be derived from previous.
+However, it will not have a velocity relative to its starting position.
+Instead, its velocity will move with the source. <- Important
+
+[Spell Component]
+Marks a Spell Entity
+Integer: ID of the Spell; ID of a 
+Byte: Level of the Spell; Will be used to 
+Byte: Flag for Spell Type: Offensive, Defensive, and Utility
+Integer: Lifetime of the Spell
+Integer: Elapsed Time since creation of Spell
+ 
+
+
+Spell Results... and literally everything!
+All of it will be handled by the collision system.
+
+Spell and character collide?
+Apply damage, or heal, and status effects.
+Kill spell if single hit.
+Persist if AoE or Penetrating.
+
+Single Hit Spell and Block Spell?
+Kill offending Spell.
+
+Character and Character?
+Bump.
+
+Character and Map Item?
+Kill Map Item and place in character inventory.

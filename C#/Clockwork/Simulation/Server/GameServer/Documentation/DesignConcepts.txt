@@ -1,0 +1,79 @@
+﻿[Clockwork] Working Name
+Clockwork is the working name of 
+
+
+[Architecture] Artemis Framework
+Artemis is an Entity Component System that is a Component focused approach to the traditional design
+as well as traditional programming designs. This approach involves all data to be packaged into
+components. This components are solely influenced by systems that involve them. Entities are merely
+labels, or lists, of these aggregated components.
+Artemis allows you to edit components, like physics, to be edited without having to go through each
+entity. It also allows for easy attach and detaching from entities.
+
+[Programming]
+Attacks are Entities with their own Element
+Skills are Entities with their own Element
+Characters are Entities with their own Element
+
+
+[Design] Mana and Stamina Depletion Logic
+Mana and Stamina do not prevent a player from using certain spells. Instead, they serve to "power"
+spells. If the amount of Mana or Stamina of a skill is insufficient, the skill will cast with the
+remainder of the Mana or Stamina the player has left, and adjust the power level or effects of the
+ability; Abilities will be scaled down.
+
+Conversely (OPTIONAL), the player has the ability to overpower a certain ability at the expense of
+more Mana or Stamina
+
+[Design] Map and Environment Influence
+This is the core design concept of this project. 
+
+[Design] Map States
+Map Elements
+	Fire (Burning Foliage)
+	Water (Water Bodies; River, Lake, Pond, Stream, etc)
+	Neutral (
+
+Base Properties :
+
+Dirt / Sand
+	
+Earth
+Rock
+
+
+Overlay Properties :
+
+Grass
+	Burning State
+	0. Singed Grass 0 + Fire Effect : Fire Property
+	1. Singed Grass 1 + Fire Effect : Fire Property
+	2. Ash							: Neutral
+
+Singed Grass 0
+Singed Grass 1
+
+Brush
+	Burning State
+		0. Burning Brush 0
+		1. Burning Brush 1
+		2. Burning Brush 1 -> Ash
+
+	Cut Brush
+		0. Brush -> Cut Brush
+
+Cut Brush
+	Burning Cut Brush
+	Burning Cut Brush
+
+	Brush -> Dirt / Sand or Earth
+Bushes >>
+Trees >>
+
+Ash >>
+
+Dirt / Sand >>
+Earth >>
+Rock >>
+Shallow Water >> 
+Deep Water >>
