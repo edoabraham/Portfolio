@@ -71,16 +71,21 @@ void DataCollisionEnergy::Read(const string& fileName) {
 // Reads and parses for collision energy data.
 CollisionData DataCollisionEnergy::ReadCollisionData(char* item) {
 	CollisionData data = CollisionData();
-	data.Temperature = atof(Util::NullTest(strtok(item, Delimiters)));
-	data.Position.X = atof(Util::NullTest(strtok(NULL, Delimiters)));
-	data.Position.Y = atof(Util::NullTest(strtok(NULL, Delimiters)));
-	data.Position.Z = atof(Util::NullTest(strtok(NULL, Delimiters)));
-	data.DeltaVelocity = atof(Util::NullTest(strtok(NULL, Delimiters)));
-	data.Energy = atof(Util::NullTest(strtok(NULL, Delimiters)));
-	data.Distance = atof(Util::NullTest(strtok(NULL, Delimiters)));
-	data.Gas1Type = atoi(Util::NullTest(strtok(NULL, Delimiters)));
-	data.Gas2Type = atoi(Util::NullTest(strtok(NULL, Delimiters)));
+	data.Temperature = atof(Utilities::NullTest(strtok(item, Delimiters)));
+	data.Position.X = atof(Utilities::NullTest(strtok(NULL, Delimiters)));
+	data.Position.Y = atof(Utilities::NullTest(strtok(NULL, Delimiters)));
+	data.Position.Z = atof(Utilities::NullTest(strtok(NULL, Delimiters)));
+	data.DeltaVelocity = atof(Utilities::NullTest(strtok(NULL, Delimiters)));
+	data.Energy = atof(Utilities::NullTest(strtok(NULL, Delimiters)));
+	data.Distance = atof(Utilities::NullTest(strtok(NULL, Delimiters)));
+	data.Gas1Type = atoi(Utilities::NullTest(strtok(NULL, Delimiters)));
+	data.Gas2Type = atoi(Utilities::NullTest(strtok(NULL, Delimiters)));
 	return data;
+}
+
+// Returns a list of collision data.
+vector<CollisionData>& DataCollisionEnergy::GetData() {
+	return this->CollisionList_;
 }
 
 // Returns collision data that contains the

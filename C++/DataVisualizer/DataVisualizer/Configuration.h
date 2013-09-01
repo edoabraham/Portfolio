@@ -1,12 +1,9 @@
 /// Configuration.h - Configuration Class Declaration
 /// Written By Jesse Z. Zhong
-
 #ifndef __CONFIGURATION_H__
 #define __CONFIGURATION_H__
 
 #include "stdafx.h"
-#include "ProjectSettings.h"
-
 using namespace std;
 
 // Default Values
@@ -19,7 +16,7 @@ const int DEFAULT_REFRESH_INTERVAL = 200;
 // Configuration File Name
 const string CONFIGURATION_FILE_NAME = "CONFIG";
 
-// Enumurates All Program Configuration and Settings
+// Enummurates All Program Configuration and Settings
 // and Maintains a User Input and Output Save
 class Configuration {
 public:
@@ -37,13 +34,7 @@ public:
     
     // Checks if the Config File Exists for Not
     bool CheckForFile() const;
-    
-    // ACCESSORS
-    // Window Position and Dimensions
-    QRect GetGeometry() const;
-    void SetGeometry(QRect value);
-    void SetGeometry(int x, int y, int width, int height);
-    
+
     // Graph Refresh Interval
     int GetRefreshInterval() const;
     void SetRefreshInterval(int value);
@@ -60,14 +51,6 @@ public:
     bool IsDirectorySet() const;
     
 private:
-    
-    // Window Defined Saved Dimensions
-    int WindowWidth_;
-    int WindowHeight_;
-    
-    // User Defined Saved Position
-    int WindowPositionX_;
-    int WindowPositionY_;
     
     // The Refresh Rate of the
     // Graphs, Measured in Milliseconds

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'DataVisualizerGUI.ui'
 **
-** Created: Wed Jul 3 15:41:24 2013
+** Created: Fri Aug 16 06:20:30 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -15,7 +15,6 @@
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
 #include <QtGui/QComboBox>
-#include <QtGui/QFormLayout>
 #include <QtGui/QGridLayout>
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
@@ -82,15 +81,13 @@ public:
     QSlider *SeekSlider;
     QPushButton *StartButton;
     QScrollArea *GraphScrollArea;
-    QWidget *scrollAreaWidgetContents;
-    QGridLayout *gridLayout;
-    QFormLayout *GraphLayoutArea;
+    QWidget *PlotArea;
     QWidget *PreferencesTab;
     QGridLayout *gridLayout_3;
     QGridLayout *gridLayout_2;
     QSpacerItem *horizontalSpacer_5;
     QLabel *ViewModeLabel;
-    QLabel *RefreshIntervalSecondsLabel;
+    QLabel *RefreshIntervalMSLabel;
     QComboBox *ViewModeComboBox;
     QLabel *RefreshIntervalLabel;
     QSlider *RefreshIntervalSlider;
@@ -103,8 +100,9 @@ public:
     QLabel *SimulationDirectoryDescLabel;
     QLineEdit *SimulationDirectoryLineEdit;
     QHBoxLayout *horizontalLayout_4;
-    QPushButton *BrowseDirectoryButton;
     QSpacerItem *horizontalSpacer_4;
+    QPushButton *BrowseDirectoryButton;
+    QPushButton *DirLoadButton;
     QSpacerItem *verticalSpacer_5;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -114,6 +112,18 @@ public:
         if (DataVisualizerGUIClass->objectName().isEmpty())
             DataVisualizerGUIClass->setObjectName(QString::fromUtf8("DataVisualizerGUIClass"));
         DataVisualizerGUIClass->resize(1204, 700);
+        QPalette palette;
+        QBrush brush(QColor(255, 255, 255, 255));
+        brush.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::Base, brush);
+        QBrush brush1(QColor(252, 252, 252, 255));
+        brush1.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::Window, brush1);
+        palette.setBrush(QPalette::Inactive, QPalette::Base, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Window, brush1);
+        palette.setBrush(QPalette::Disabled, QPalette::Base, brush1);
+        palette.setBrush(QPalette::Disabled, QPalette::Window, brush1);
+        DataVisualizerGUIClass->setPalette(palette);
         DataVisualizerGUIClass->setLayoutDirection(Qt::LeftToRight);
         actionChange_Directory = new QAction(DataVisualizerGUIClass);
         actionChange_Directory->setObjectName(QString::fromUtf8("actionChange_Directory"));
@@ -427,24 +437,20 @@ public:
 
         GraphScrollArea = new QScrollArea(GraphsTab);
         GraphScrollArea->setObjectName(QString::fromUtf8("GraphScrollArea"));
-        GraphScrollArea->setWidgetResizable(true);
-        scrollAreaWidgetContents = new QWidget();
-        scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 850, 498));
-        gridLayout = new QGridLayout(scrollAreaWidgetContents);
-        gridLayout->setSpacing(6);
-        gridLayout->setContentsMargins(11, 11, 11, 11);
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        GraphLayoutArea = new QFormLayout();
-        GraphLayoutArea->setSpacing(6);
-        GraphLayoutArea->setObjectName(QString::fromUtf8("GraphLayoutArea"));
-        GraphLayoutArea->setSizeConstraint(QLayout::SetFixedSize);
-        GraphLayoutArea->setFieldGrowthPolicy(QFormLayout::AllNonFixedFieldsGrow);
-        GraphLayoutArea->setRowWrapPolicy(QFormLayout::DontWrapRows);
-
-        gridLayout->addLayout(GraphLayoutArea, 0, 0, 1, 1);
-
-        GraphScrollArea->setWidget(scrollAreaWidgetContents);
+        GraphScrollArea->setFocusPolicy(Qt::ClickFocus);
+        GraphScrollArea->setLayoutDirection(Qt::LeftToRight);
+        GraphScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        GraphScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        GraphScrollArea->setWidgetResizable(false);
+        PlotArea = new QWidget();
+        PlotArea->setObjectName(QString::fromUtf8("PlotArea"));
+        PlotArea->setGeometry(QRect(0, 0, 850, 498));
+        QSizePolicy sizePolicy4(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(PlotArea->sizePolicy().hasHeightForWidth());
+        PlotArea->setSizePolicy(sizePolicy4);
+        GraphScrollArea->setWidget(PlotArea);
 
         gridLayout_6->addWidget(GraphScrollArea, 0, 0, 1, 1);
 
@@ -468,18 +474,18 @@ public:
 
         gridLayout_2->addWidget(ViewModeLabel, 1, 0, 1, 1);
 
-        RefreshIntervalSecondsLabel = new QLabel(PreferencesTab);
-        RefreshIntervalSecondsLabel->setObjectName(QString::fromUtf8("RefreshIntervalSecondsLabel"));
+        RefreshIntervalMSLabel = new QLabel(PreferencesTab);
+        RefreshIntervalMSLabel->setObjectName(QString::fromUtf8("RefreshIntervalMSLabel"));
 
-        gridLayout_2->addWidget(RefreshIntervalSecondsLabel, 2, 2, 1, 1);
+        gridLayout_2->addWidget(RefreshIntervalMSLabel, 2, 2, 1, 1);
 
         ViewModeComboBox = new QComboBox(PreferencesTab);
         ViewModeComboBox->setObjectName(QString::fromUtf8("ViewModeComboBox"));
-        QSizePolicy sizePolicy4(QSizePolicy::Preferred, QSizePolicy::Fixed);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(0);
-        sizePolicy4.setHeightForWidth(ViewModeComboBox->sizePolicy().hasHeightForWidth());
-        ViewModeComboBox->setSizePolicy(sizePolicy4);
+        QSizePolicy sizePolicy5(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        sizePolicy5.setHorizontalStretch(0);
+        sizePolicy5.setVerticalStretch(0);
+        sizePolicy5.setHeightForWidth(ViewModeComboBox->sizePolicy().hasHeightForWidth());
+        ViewModeComboBox->setSizePolicy(sizePolicy5);
 
         gridLayout_2->addWidget(ViewModeComboBox, 1, 1, 1, 1);
 
@@ -518,8 +524,8 @@ public:
         verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
         SimulationDirectoryLabel = new QLabel(PreferencesTab);
         SimulationDirectoryLabel->setObjectName(QString::fromUtf8("SimulationDirectoryLabel"));
-        sizePolicy4.setHeightForWidth(SimulationDirectoryLabel->sizePolicy().hasHeightForWidth());
-        SimulationDirectoryLabel->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(SimulationDirectoryLabel->sizePolicy().hasHeightForWidth());
+        SimulationDirectoryLabel->setSizePolicy(sizePolicy5);
         QFont font3;
         font3.setPointSize(18);
         SimulationDirectoryLabel->setFont(font3);
@@ -528,8 +534,8 @@ public:
 
         SimulationDirectoryDescLabel = new QLabel(PreferencesTab);
         SimulationDirectoryDescLabel->setObjectName(QString::fromUtf8("SimulationDirectoryDescLabel"));
-        sizePolicy4.setHeightForWidth(SimulationDirectoryDescLabel->sizePolicy().hasHeightForWidth());
-        SimulationDirectoryDescLabel->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(SimulationDirectoryDescLabel->sizePolicy().hasHeightForWidth());
+        SimulationDirectoryDescLabel->setSizePolicy(sizePolicy5);
 
         verticalLayout_5->addWidget(SimulationDirectoryDescLabel);
 
@@ -543,14 +549,19 @@ public:
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         horizontalLayout_4->setContentsMargins(2, -1, -1, -1);
+        horizontalSpacer_4 = new QSpacerItem(198, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer_4);
+
         BrowseDirectoryButton = new QPushButton(PreferencesTab);
         BrowseDirectoryButton->setObjectName(QString::fromUtf8("BrowseDirectoryButton"));
 
         horizontalLayout_4->addWidget(BrowseDirectoryButton);
 
-        horizontalSpacer_4 = new QSpacerItem(198, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        DirLoadButton = new QPushButton(PreferencesTab);
+        DirLoadButton->setObjectName(QString::fromUtf8("DirLoadButton"));
 
-        horizontalLayout_4->addItem(horizontalSpacer_4);
+        horizontalLayout_4->addWidget(DirLoadButton);
 
 
         verticalLayout_5->addLayout(horizontalLayout_4);
@@ -600,7 +611,7 @@ public:
         AverageDensityLabel->setText(QApplication::translate("DataVisualizerGUIClass", "<html><head/><body><p>Average Density ( \317\201<span style=\" vertical-align:sub;\">Avg</span> ) : </p></body></html>", 0, QApplication::UnicodeUTF8));
         EnlargeGraphButton->setText(QApplication::translate("DataVisualizerGUIClass", "+", 0, QApplication::UnicodeUTF8));
         ShrinkGraphButton->setText(QApplication::translate("DataVisualizerGUIClass", "-", 0, QApplication::UnicodeUTF8));
-        CurrentSnapshotLabel->setText(QApplication::translate("DataVisualizerGUIClass", "Current Snapshot Number : ", 0, QApplication::UnicodeUTF8));
+        CurrentSnapshotLabel->setText(QApplication::translate("DataVisualizerGUIClass", "Current Data Set : ", 0, QApplication::UnicodeUTF8));
         CurrentSnapshotLineEdit->setText(QString());
         StartButton->setText(QApplication::translate("DataVisualizerGUIClass", "Start", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(GraphsTab), QApplication::translate("DataVisualizerGUIClass", "Graphs", 0, QApplication::UnicodeUTF8));
@@ -608,7 +619,7 @@ public:
         ViewModeLabel->setToolTip(QApplication::translate("DataVisualizerGUIClass", "<html><head/><body><p>Changes the Detail of Text Shown:</p><p><br/></p><p>Simple View - example : &quot; T&lt;sub&gt;Max&lt;/sub&gt;&quot;</p><p><br/></p><p>Complex View - example : &quot;Max Temperature ( T&lt;sub&gt;Max&lt;/sub&gt; )&quot;</p></body></html>", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_TOOLTIP
         ViewModeLabel->setText(QApplication::translate("DataVisualizerGUIClass", "View Mode : ", 0, QApplication::UnicodeUTF8));
-        RefreshIntervalSecondsLabel->setText(QApplication::translate("DataVisualizerGUIClass", "100 Milliseconds", 0, QApplication::UnicodeUTF8));
+        RefreshIntervalMSLabel->setText(QApplication::translate("DataVisualizerGUIClass", "100 Milliseconds", 0, QApplication::UnicodeUTF8));
         ViewModeComboBox->clear();
         ViewModeComboBox->insertItems(0, QStringList()
          << QApplication::translate("DataVisualizerGUIClass", "Complex View", 0, QApplication::UnicodeUTF8)
@@ -618,6 +629,7 @@ public:
         SimulationDirectoryLabel->setText(QApplication::translate("DataVisualizerGUIClass", "Simulation Directory", 0, QApplication::UnicodeUTF8));
         SimulationDirectoryDescLabel->setText(QApplication::translate("DataVisualizerGUIClass", "<html><head/><body><p>You can change the simulation directory here.</p><p>The data read from the directory will be loaded immediately.</p></body></html>", 0, QApplication::UnicodeUTF8));
         BrowseDirectoryButton->setText(QApplication::translate("DataVisualizerGUIClass", "Browse...", 0, QApplication::UnicodeUTF8));
+        DirLoadButton->setText(QApplication::translate("DataVisualizerGUIClass", "Load", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(PreferencesTab), QApplication::translate("DataVisualizerGUIClass", "Preferences", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 

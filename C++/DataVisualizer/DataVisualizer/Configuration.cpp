@@ -1,9 +1,7 @@
 /// Configuration.cpp - Configuration Class Method Implementations
 /// Written By Jesse Z. Zhong
-
 #include "stdafx.h"
 #include "Configuration.h"
-#include "ProjectSettings.h"
 
 // Buffer Length
 const int BUFFER_LENGTH = 512;
@@ -11,10 +9,6 @@ const int BUFFER_LENGTH = 512;
 // Constructor
 Configuration::Configuration() {
     FilesDirectory_ = "";
-    WindowPositionX_ = DEFAULT_WINDOW_POSX;
-    WindowPositionY_ = DEFAULT_WINDOW_POSY;
-    WindowWidth_ = DEFAULT_WINDOW_WIDTH;
-    WindowHeight_ = DEFAULT_WINDOW_HEIGHT;
     GraphRefreshInterval_ = DEFAULT_REFRESH_INTERVAL;
 }
 
@@ -49,11 +43,7 @@ void Configuration::ReadConfig() {
         
         string filesDirectory;
         
-        s >> WindowPositionX_
-            >> WindowPositionY_
-            >> WindowWidth_
-            >> WindowHeight_
-            >> GraphRefreshInterval_
+        s   >> GraphRefreshInterval_
             >> filesDirectory
             >> ViewMode_;
         
@@ -81,11 +71,7 @@ void Configuration::WriteConfig() {
     // Write All Values Here
     stringstream s;
     
-    s << WindowPositionX_ << endl
-        << WindowPositionY_ << endl
-        << WindowWidth_ << endl
-        << WindowHeight_ << endl
-        << GraphRefreshInterval_ << endl
+    s   << GraphRefreshInterval_ << endl
         << FilesDirectory_.toStdString() << endl
         << ViewMode_ << endl;
     
@@ -98,18 +84,6 @@ void Configuration::WriteConfig() {
 // ACCESSORS
 // Note: All Set Functions will Write a New
 // Config File on Call to Update on Change
-
-// Window Position and Dimensions
-QRect Configuration::GetGeometry() const {
-    return QRect(WindowPositionX_, WindowPositionY_, WindowWidth_, WindowHeight_);
-}
-void Configuration::SetGeometry(QRect value) {
-    WindowPositionX_ = value.x();
-    WindowPositionY_ = value.y();
-    WindowWidth_ = value.width();
-    WindowHeight_ = value.height();
-    WriteConfig();
-}
 
 // Graph Refresh Interval
 int Configuration::GetRefreshInterval() const {

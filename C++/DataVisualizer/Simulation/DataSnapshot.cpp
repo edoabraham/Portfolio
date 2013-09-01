@@ -1,5 +1,6 @@
 /// ParseSnapshot.h - Parse Snapshot File Class Method Implementations
 /// Written By Jesse Z. Zhong
+/// Spell checked by Andrew Lopreiato
 #pragma region Includes
 #include "stdafx.h"
 #include "Utilities.h"
@@ -39,7 +40,6 @@ void DataSnapshot::Read(const string& fileName) {
 
 		// Store the file into the buffer and close the file.
 		FileReadStream readStream(filePtr, buffer, size);
-		
 
 		// Create a document object to deserialize the JSON.
 		Document doc;
@@ -85,7 +85,10 @@ void DataSnapshot::Read(const string& fileName) {
 					item.Temperature[k]);
 
 				// Test for the number of gas types.
-				this->GasTypes_ = min(this->GasTypes_, item.GasTypes);
+				if(this->GasTypes_ == 0)
+					this->GasTypes_ = item.GasTypes;
+				else
+					this->GasTypes_ = min(this->GasTypes_, item.GasTypes);
 			}
 
 			// Sum up the individual density values.
@@ -128,16 +131,16 @@ ShellData DataSnapshot::ReadShellData(Value& item) {
 
 		// Store the arrays from the file.
 		Value& temperature = item[SD_Temperature];
-		data.Temperature = Util::ParseAsArray<double>(temperature);
+		data.Temperature = Utilities::ParseAsArray<double>(temperature);
 
 		Value& velocity = item[SD_Velocity];
-		data.Velocity = Util::ParseAsArray<double>(velocity);
+		data.Velocity = Utilities::ParseAsArray<double>(velocity);
 
 		Value& ionization = item[SD_Ionization];
-		data.Ionization = Util::ParseAsArray<double>(ionization);
+		data.Ionization = Utilities::ParseAsArray<double>(ionization);
 
 		Value& percent = item[SD_Percentage];
-		data.Percent = Util::ParseAsArray<double>(percent);
+		data.Percent = Utilities::ParseAsArray<double>(percent);
 
 		// Store the number of types of gases.
 		data.GasTypes = (int)data.Temperature.size();

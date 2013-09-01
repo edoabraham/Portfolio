@@ -1,2 +1,24 @@
 [Trace RPK]
 Add a trace marker to the RPK plot.
+
+[Incorporate Multi-Threading]
+To make best use of machines with multiple cores, the program 
+should divide its tasks into separate loads for each core to handle.
+The program may need to identify the number of cores a machine has
+and spawn a number of threads that corresponds to the number of cores
+found and available.
+
+[Fix Loading Bug]
+Random crashing when loading files into the program. Currently an unknown
+as to why this is happening and where it is coming from.
+
+[OpenGL Plots]
+Employ the OpenGL based plotting system. The plots should have special
+event handling for mouse and keyboard to allow the user to navigate
+the plot. The camera should be centered about a certain point. Mouse
+dragging should allow rotation. Scroll wheel will control zooming.
+It may also be informative to display the coordinates and vector direction
+of the camera at all times. Also, ticks/markers need to be calculated for
+and added to the sides of the plot. The will display the measurements of
+the plot. The calculation will require the distance between the camera
+and the origin of the plot.

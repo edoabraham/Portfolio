@@ -63,6 +63,9 @@
     <CustomBuild Include="PreferenceUI.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="QCustomPlotEX.h">
+      <Filter>Graphs</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SignalPlot.cpp">
@@ -110,6 +113,15 @@
     <ClCompile Include="Util.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="PreferenceUIEX.cpp">
+      <Filter>UI Form Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_QCustomPlotEX.cpp">
+      <Filter>Dependencies\Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_QCustomPlotEX.cpp">
+      <Filter>Dependencies\Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SignalPlot.h">
@@ -130,9 +142,6 @@
     <ClInclude Include="stdafx.h">
       <Filter>Dependencies</Filter>
     </ClInclude>
-    <ClInclude Include="QCustomPlotEX.h">
-      <Filter>Graphs</Filter>
-    </ClInclude>
     <ClInclude Include="ColorPicker.h">
       <Filter>Utilities</Filter>
     </ClInclude>
@@ -141,6 +150,18 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_PreferenceUI.h">
       <Filter>Dependencies\Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LimitQueue.h">
+      <Filter>Dependencies</Filter>
+    </ClInclude>
+    <ClInclude Include="UndoStack.h">
+      <Filter>Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="PreferenceUIEX.h">
+      <Filter>UI Form Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="QCPAxisEX.h">
+      <Filter>Graphs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

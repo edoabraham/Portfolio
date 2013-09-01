@@ -1,7 +1,7 @@
 // stdafx.h - Precompiled Header
 // Written by Jesse Z. Zhong
-#ifndef __Precompiled_Header__
-#define __Precompiled_Header__
+#ifndef __PrecompiledHeader_H__
+#define __PrecompiledHeader_H__
 
 // Qt
 #include <QWidget>

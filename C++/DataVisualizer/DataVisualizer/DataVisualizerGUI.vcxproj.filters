@@ -41,37 +41,22 @@
     <Filter Include="Settings">
       <UniqueIdentifier>{b5f1ccee-838d-4bc9-8745-a3a79df77a44}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphs\GraphTypes">
+      <UniqueIdentifier>{b5a2d415-3f89-4f5a-bf5d-4836e37eae7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphs\Base">
+      <UniqueIdentifier>{638dcafc-0a69-4c68-a5ff-e795eb20a5b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{84ee14eb-4132-4cda-8c88-909872cee584}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_DataVisualizerGUI.h">
       <Filter>Dependencies\Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_FileLoadUI.h">
-      <Filter>Dependencies\Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_StartupUI.h">
       <Filter>Dependencies\Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DensityVsRadius.h">
-      <Filter>Graphs</Filter>
-    </ClInclude>
-    <ClInclude Include="Graph.h">
-      <Filter>Graphs</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Dependencies</Filter>
-    </ClInclude>
-    <ClInclude Include="TemperatureVsRadius.h">
-      <Filter>Graphs</Filter>
-    </ClInclude>
-    <ClInclude Include="WallRadiusVsTime.h">
-      <Filter>Graphs</Filter>
-    </ClInclude>
-    <ClInclude Include="IonizationVsRadius.h">
-      <Filter>Graphs</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleDistributionPlot.h">
-      <Filter>Graphs</Filter>
     </ClInclude>
     <ClInclude Include="Configuration.h">
       <Filter>Settings</Filter>
@@ -79,23 +64,50 @@
     <ClInclude Include="StringResource.h">
       <Filter>Settings</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionEnergyPlot.h">
-      <Filter>Graphs</Filter>
-    </ClInclude>
     <ClInclude Include="DataVisualizerGUIEX.h">
       <Filter>UI Form Extensions</Filter>
     </ClInclude>
     <ClInclude Include="StartupUIEX.h">
       <Filter>UI Form Extensions</Filter>
     </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Dependencies</Filter>
+    </ClInclude>
+    <ClInclude Include="G_DensityRadius.h">
+      <Filter>Graphs\GraphTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="G_IonizationRadius.h">
+      <Filter>Graphs\GraphTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="G_TempRadius.h">
+      <Filter>Graphs\GraphTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="G_WallRadTime.h">
+      <Filter>Graphs\GraphTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph.h">
+      <Filter>Graphs\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="QCPAxisEX.h">
+      <Filter>Graphs\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="GL_CollideEnergy.h">
+      <Filter>Graphs\GraphTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="GL_ParticleDist.h">
+      <Filter>Graphs\GraphTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="DataManager.h">
+      <Filter>Program</Filter>
+    </ClInclude>
+    <ClInclude Include="Util.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorPicker.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GeneratedFiles\Debug\moc_DataVisualizerGUI.cpp">
-      <Filter>Dependencies\Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_DataVisualizerGUI.cpp">
-      <Filter>Dependencies\Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_GraphGL.cpp">
       <Filter>Dependencies\Generated Files\Debug</Filter>
     </ClCompile>
@@ -108,20 +120,8 @@
     <ClCompile Include="GeneratedFiles\Release\moc_qcustomplot.cpp">
       <Filter>Dependencies\Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="DataVisualizerGUI.cpp">
-      <Filter>Graphs</Filter>
-    </ClCompile>
-    <ClCompile Include="DensityVsRadius.cpp">
-      <Filter>Graphs</Filter>
-    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Dependencies</Filter>
-    </ClCompile>
-    <ClCompile Include="TemperatureVsRadius.cpp">
-      <Filter>Graphs</Filter>
-    </ClCompile>
-    <ClCompile Include="IonizationVsRadius.cpp">
-      <Filter>Graphs</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Program</Filter>
@@ -129,34 +129,55 @@
     <ClCompile Include="qcustomplot.cpp">
       <Filter>Dependencies</Filter>
     </ClCompile>
-    <ClCompile Include="WallRadiusVsTime.cpp">
-      <Filter>Graphs</Filter>
-    </ClCompile>
     <ClCompile Include="Configuration.cpp">
       <Filter>Settings</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_QCustomPlotEX.cpp">
+      <Filter>Dependencies\Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_QCustomPlotEX.cpp">
+      <Filter>Dependencies\Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="DataManager.cpp">
+      <Filter>Program</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DataVisualizer.cpp">
+      <Filter>Dependencies\Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DataVisualizer.cpp">
+      <Filter>Dependencies\Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="DataVisualizer.cpp">
+      <Filter>Program</Filter>
+    </ClCompile>
+    <ClCompile Include="Util.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorPicker.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="FileLoadUI.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="DataVisualizerGUI.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="StartupUI.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="DataVisualizerGUI.h">
-      <Filter>Graphs</Filter>
-    </CustomBuild>
-    <CustomBuild Include="GraphGL.h">
-      <Filter>Graphs</Filter>
-    </CustomBuild>
     <CustomBuild Include="qcustomplot.h">
       <Filter>Dependencies</Filter>
     </CustomBuild>
     <CustomBuild Include="DataVisualizerUI.qrc">
       <Filter>Dependencies\Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GraphGL.h">
+      <Filter>Graphs\Base</Filter>
+    </CustomBuild>
+    <CustomBuild Include="QCustomPlotEX.h">
+      <Filter>Graphs\Base</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DataVisualizer.h">
+      <Filter>Program</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

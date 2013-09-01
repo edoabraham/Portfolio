@@ -9,15 +9,17 @@ using namespace std;
 
 int main() {
 
-// 	DataSnapshot ds = DataSnapshot();
-// 	ds.Read("Snapshot00000001.dat");
+ 	DataSnapshot ds = DataSnapshot();
+ 	ds.Read("Snapshot00000001.dat");
+	cout << ds << endl;
 
 	DataSavepoint sv = DataSavepoint();
 	sv.Read("SavePoint000001.txt");
+	//cout << sv << endl;
 
 	DataRPK dr = DataRPK();
 	dr.Read("RPactual.dat");
-	cout << dr << endl;
+	//cout << dr << endl;
 
 	cin.get();
 	return 0;

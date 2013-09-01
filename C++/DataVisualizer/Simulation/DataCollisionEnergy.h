@@ -1,7 +1,7 @@
 // DataCollisionEnergy.h - Collision Energy Class Declaration
 // Written By Jesse Z. Zhong
-#ifndef __DataCollisionEnergy_H__
-#define __DataCollisionEnergy_H__
+#ifndef __Data_Collision_Energy_H__
+#define __Data_Collision_Energy_H__
 #pragma region Includes
 #include "stdafx.h"
 #include "Vector3.h"
@@ -40,9 +40,15 @@ public:
 		this->Min_ = CollisionData();
 		this->Max_ = CollisionData();
 	}
+
+	// Init-Constructor
+	DataCollisionEnergy(const string& fileName) 
+		: DataFile(fileName) {
+			this->Read(fileName);
+	}
     
     // Reads and stores data from a collision energy file.
-    void Read(const string& fileName);
+	virtual void Read(const string& fileName);
 #pragma endregion
 #pragma region Accessors
 	// Returns a list of collision data.

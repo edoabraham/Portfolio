@@ -1,12 +1,10 @@
 /// StringResource.h - Program String Resource Sheet
 /// Written By Jesse Zhong
-
 #include "stdafx.h"
-#include "ProjectSettings.h"
 
 /// Display Modes
-const int COMPLEX_DISPLAY_MODE = 0;
-const int SIMPLE_DISPLAY_MODE = 1;
+const int ComplexDisplayMode = 0;
+const int SimpleDisplayMode = 1;
 
 /// Enumerate All Strings
 const QString SRC_START = "Start";

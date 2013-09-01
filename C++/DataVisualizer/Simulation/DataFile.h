@@ -18,6 +18,11 @@ public:
 		this->DataStored_ = false;
 	}
 
+	// Init-Constructor
+	DataFile(const string& fileName) {
+		this->FileName_ = fileName;
+	}
+
 	// Lists the type of data the files are.
 	enum EFileType {
 		RPK,

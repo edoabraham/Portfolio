@@ -70,13 +70,13 @@ void DataSavepoint::Read(const string& fileName) {
 // Reads and parses for particle data.
 ParticleData DataSavepoint::ReadParticleData(char* item) {
 	ParticleData data = ParticleData();
-	data.Position.X = atof(Util::NullTest(strtok(item, Delimiters)));
-	data.Position.Y = atof(Util::NullTest(strtok(NULL, Delimiters)));
-	data.Position.Z = atof(Util::NullTest(strtok(NULL, Delimiters)));
-	data.Velocity.X = atof(Util::NullTest(strtok(NULL, Delimiters)));
-	data.Velocity.Y = atof(Util::NullTest(strtok(NULL, Delimiters)));
-	data.Velocity.Z = atof(Util::NullTest(strtok(NULL, Delimiters)));
-	data.GasType = atoi(Util::NullTest(strtok(NULL, Delimiters)));
+	data.Position.X = atof(Utilities::NullTest(strtok(item, Delimiters)));
+	data.Position.Y = atof(Utilities::NullTest(strtok(NULL, Delimiters)));
+	data.Position.Z = atof(Utilities::NullTest(strtok(NULL, Delimiters)));
+	data.Velocity.X = atof(Utilities::NullTest(strtok(NULL, Delimiters)));
+	data.Velocity.Y = atof(Utilities::NullTest(strtok(NULL, Delimiters)));
+	data.Velocity.Z = atof(Utilities::NullTest(strtok(NULL, Delimiters)));
+	data.GasType = atoi(Utilities::NullTest(strtok(NULL, Delimiters)));
 	return data;
 }
 

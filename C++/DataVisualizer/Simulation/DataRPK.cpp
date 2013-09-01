@@ -63,11 +63,11 @@ void DataRPK::Read(const string& fileName) {
 // Reads and parses for an RPK data point.
 RpkDataPoint DataRPK::ReadDataPoint(char* item) {
 	RpkDataPoint data = RpkDataPoint();
-	data.Time = atof(Util::NullTest(strtok(item, Delimiters)));
-	data.WallRadius = atof(Util::NullTest(strtok(NULL, Delimiters)));
-	data.WallVelocity = atof(Util::NullTest(strtok(NULL, Delimiters)));
-	data.Pressure = atof(Util::NullTest(strtok(NULL, Delimiters)));
-	data.PressureToTime = atof(Util::NullTest(strtok(NULL, Delimiters)));
+	data.Time = atof(Utilities::NullTest(strtok(item, Delimiters)));
+	data.WallRadius = atof(Utilities::NullTest(strtok(NULL, Delimiters)));
+	data.WallVelocity = atof(Utilities::NullTest(strtok(NULL, Delimiters)));
+	data.Pressure = atof(Utilities::NullTest(strtok(NULL, Delimiters)));
+	data.PressureToTime = atof(Utilities::NullTest(strtok(NULL, Delimiters)));
 	return data;
 }
 

@@ -114,3 +114,29 @@ The top and right margins should be ignored for the selection zoom.
 Allow the use of arrow keys to move signals. Use the pixelToCoord() conversion to
 shift the plot a certain number of coordinates. Have settings in the preference
 window.
+
+[Add Recent List] - DONE
+Add a listing of recent files that were opened. Save this information to the system
+registry.
+
+[Undo Commands] - DONE
+Add the ability to undo a command or action by a user.
+
+[Status Bar] - DONE
+Status bar at the bottom that displays events that are happening in the app.
+
+[Disable Bold] - DONE
+Allow the option to disable boldfacing in a new preference box. Preference settings will
+save to registry.
+
+[Add Registry Entry] - DONE
+Add registry entry for system configurations for the app. The configurations should
+include the last window size used and the various small tweaks like turning bold
+on or off. Use platform independent QSettings to achieve this.
+
+[Scroll Bar on Zoom] - DONE
+Add a when zoomed in on a selection. Both axis. Calculate a temporal max and min for
+each axis that is scaled by the pixelToCoord() method. Make a method in the main
+form that will increment or decrement the viewport's lower and upper ranges. Call
+a replot() after each increment or decrement. The implementation of the calculations
+for the scroll should be in QCustomPlotEX.

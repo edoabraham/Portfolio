@@ -1,29 +1,14 @@
-/// Utilities.h - Utility Template Functions
-/// Written By Jesse Z. Zhong
-
-#ifndef __UTILITIES_H__
-#define __UTILITIES_H__
-
+// Utilities.h - Utility Template Functions
+// Written By Jesse Z. Zhong
+#ifndef __Utilities_H__
+#define __Utilities_H__
 #include "stdafx.h"
-
 using namespace std;
 using namespace rapidjson;
 
-namespace Util {
+namespace Utilities {
 
-    ///
-    /// CONSTANTS
-    ///
-
-    // Golden Ratio
-    const double PHI = 1.6180339887;
-
-    // Pi
-    const double PI = 3.14159265359;
-
-    ///
-    /// FUNCTIONS
-    ///
+	// Creates a map for a
 
     // Creates an Array Out of Non-Array 
     // Document Values from Rapid JSON
@@ -34,8 +19,8 @@ namespace Util {
         vector<T> tempVector;
         
         // Iterate through the Values and Store int the Vector
-        for(Value::MemberIterator myIterator = (Value::MemberIterator) values.MemberBegin();
-            myIterator != values.MemberEnd(); myIterator++) {
+        for(Value::ConstMemberIterator it = values.MemberBegin();
+            it != values.MemberEnd(); it++) {
             
             // Temporary Variable for Storing Data
             T pulledData;
@@ -43,25 +28,22 @@ namespace Util {
             // Check for T's Type
             
             // Double
-            if((typeid(T) == typeid(double)) && myIterator->value.IsDouble())
-                pulledData = myIterator->value.GetDouble();
+            if((typeid(T) == typeid(double)) && it->value.IsDouble())
+                tempVector.push_back(it->value.GetDouble());
             
             // Signed Integer
-            else if((typeid(T) == typeid(int)) && myIterator->value.IsInt())
-                pulledData = myIterator->value.GetInt();
+            else if(((typeid(T) == typeid(int)) || (typeid(T) == typeid(double))) && it->value.IsInt())
+                tempVector.push_back((T)it->value.GetInt());
             
             // Unsigned Integer
-            else if((typeid(T) == typeid(unsigned int)) && myIterator->value.IsUint())
-                pulledData = myIterator->value.GetUint();
+            else if((typeid(T) == typeid(unsigned int)) && it->value.IsUint())
+                tempVector.push_back(it->value.GetUint());
             
             // Unsigned Long Long
-            else if((typeid(T) == typeid(unsigned long long)) && myIterator->value.IsUint64())
-                pulledData = myIterator->value.GetUint64();
+            else if((typeid(T) == typeid(unsigned long long)) && it->value.IsUint64())
+                tempVector.push_back(it->value.GetUint64());
             
             // TODO: Add More Type Support; Type Support for Value Object
-            
-            // Push Data into Vector
-            tempVector.push_back(pulledData);
         } 
         
         // Return the Vector

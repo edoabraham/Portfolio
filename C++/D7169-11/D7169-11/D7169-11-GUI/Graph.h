@@ -27,7 +27,7 @@ public:
 	}
 
 	// Sets up the dimensions and labels for graph and returns it.
-	QCustomPlot* InitializeGraph(const QRect& rect,
+	QCustomPlotEX* InitializeGraph(const QRect& rect,
 		string xAxisLabel, string yAxisLabel) {
 
 			// Adjust the geometry.
@@ -68,7 +68,7 @@ public:
 
 #pragma region Accessors
 	// Refreshes the graph and returns it.
-	QCustomPlot* GetGraph() {
+	QCustomPlotEX* GetGraph() {
 		return this->Graph_;
 	}
 

@@ -1,7 +1,7 @@
-/// Snapshot.h - Snapshot File Class Declaration
-/// Written By Jesse Z. Zhong
-#ifndef __DataSnapshot_H__
-#define __DataSnapshot_H__
+// Snapshot.h - Snapshot File Class Declaration
+// Written By Jesse Z. Zhong
+#ifndef __Data_Snapshot_H__
+#define __Data_Snapshot_H__
 #pragma region Includes
 #include "stdafx.h"
 #include "DataFile.h"
@@ -65,8 +65,14 @@ public:
 		this->AvgDensity_ = 0;
 	}
 
+	// Init-Constructor
+	DataSnapshot(const string& fileName) 
+		: DataFile(fileName) {
+			this->Read(fileName);
+	}
+
 	// Parse the File
-	void Read(const string& fileName);
+	virtual void Read(const string& fileName);
 #pragma endregion
 #pragma region Accessors
 	// Return primary data fields.
@@ -80,6 +86,7 @@ public:
 	unsigned long long GetTotalWallCollisions() const { return this->TotalWallCollisions_; }
 	unsigned long long GetTotalConeBoundaryCollisions() const { return this->TotalConeBoundaryCollisions_; }
 	double GetFusionRate() const { return this->FusionRate_; }
+	int GetGasTypes() const { return this->GasTypes_; }
 
 	// Returns the list of shell data.
 	vector<ShellData>& GetShellData() { return this->ShellData_; }

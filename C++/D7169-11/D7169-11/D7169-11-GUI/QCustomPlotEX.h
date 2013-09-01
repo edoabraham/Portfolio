@@ -4,26 +4,25 @@
 #define __QCustomPlotEX_h__
 #pragma region Includes
 #include "stdafx.h"
+#include "QCPAxisEX.h"
+#include "UndoStack.h"
 #include <QRubberBand>
 #pragma endregion
 #pragma region Defaults
 // Default curve and plot color.
-const QColor DEFAULT_COLOR = Qt::darkCyan;
+const QColor DefaultColor = Qt::darkCyan;
 
 // Size of the scatter plot dots.
-const float SCATTER_DOT_SIZE = 0.1f;
+const float ScatterDotSize = 0.1f;
 
 // Width of a bold pen.
-const float BOLD_PEN_WIDTH = 1.5f;
+const float BoldPenWidth = 1.5f;
 
 // The scale rate per scroll wheel move.
-const double SCALE_RATE = 0.01;
+const double ScaleRate = 0.01;
 
 // The pixel rate at which a plot can be shifted.
-const double SHIFT_RATE = 1.0;
-
-// Define to allow bold on selection.
-#define BOLD_ON_SELECT
+const double ShiftRate = 1.0;
 #pragma endregion
 #pragma region Plot Data
 // Structure for storing data for individual curves.
@@ -33,7 +32,7 @@ public:
 	PlotData() {
 		this->X = QVector<double>();
 		this->Y = QVector<double>();
-		this->Color = DEFAULT_COLOR;
+		this->Color = DefaultColor;
 		this->xOffset_ = 0.0;
 		this->yOffset_ = 0.0;
 		this->xLower_ = 0.0;
@@ -41,6 +40,20 @@ public:
 		this->yLower_ = 0.0;
 		this->yUpper_ = 0.0;
 		this->Selected_ = false;
+	}
+
+	// Assignment operator overload.
+	PlotData& operator=(const PlotData& source) {
+		this->X = source.X;
+		this->Y = source.Y;
+		this->xOffset_ = source.GetXOffset();
+		this->yOffset_ = source.GetYOffset();
+		this->xLower_ = source.GetXLower();
+		this->xUpper_ = source.GetXUpper();
+		this->yLower_ = source.GetYLower();
+		this->yUpper_ = source.GetYUpper();
+		this->Selected_ = source.GetSelected();
+		return *this;
 	}
 
 	// Data points
@@ -135,6 +148,7 @@ private:
 // Extension of the QCustomPlot class that allows an
 // implementation of the class with different event handlers.
 class QCustomPlotEX : public QCustomPlot {
+	Q_OBJECT
 public:
 #pragma region Instance
 	// Constructor
@@ -156,16 +170,26 @@ public:
 		this->FullXUpper_ = 0;
 		this->FullYLower_ = 0;
 		this->FullYUpper_ = 0;
-		this->CtrlLeftClick_ = false;
+		this->IsMouseZooming_ = false;
 		this->IsPlotGrabbed_ = false;
 		this->SelectionBox_ = new QRubberBand(QRubberBand::Rectangle, this);
 		this->SelectedPlot_ = NULL;
 		this->SelectedPlotData_ = NULL;
 		this->DefaultPenWidth_ = QPen().widthF();
 		this->IsSelectBoldfaced_ = false;
+		this->UndoStack_ = UndoStack<PlotData>(true);
+
+		// Assign new axis extension type.
+		delete this->xAxis;
+		delete this->yAxis;
+		this->xAxis = this->xAxisEX_ = new QCPAxisEX(this, QCPAxis::atBottom);
+		this->yAxis = this->yAxisEX_ =  new QCPAxisEX(this, QCPAxis::atLeft);
 
 		// Set focus level for handling keyboard input.
 		this->setFocusPolicy(Qt::FocusPolicy::StrongFocus);
+
+		// Connect the scroll bar of the x axis to the viewport moving event.
+		connect(this->xAxisEX_->GetScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(ShiftViewport(int)));
 	}
 
 	// Destructor
@@ -280,6 +304,40 @@ public:
 		this->replot();
 	}
 
+	// Overload the plot to include special behavior.
+	void replot() {
+
+		// Changes the state of the axis.
+		bool isZoomed;
+		this->xAxisEX_->SetIsZoomed(isZoomed = this->IsZoomed());
+
+		// Check if the viewport is zoomed in.
+		if(isZoomed) {
+
+			// Localize the scroll bar.
+			QScrollBar* scrollBar = this->xAxisEX_->GetScrollBar();
+
+			// Calculate the ranges.
+			int viewRange = (this->XUpper_ - this->XLower_);
+			int fullRange = (this->FullXUpper_ - this->FullXLower_);
+
+			// Set the bounds of the scroll bar.
+			scrollBar->setRange(0, fullRange - viewRange);
+
+			// Calculate the current slider position in 
+			// terms of the lower bound of the viewport.
+			int sliderPos = this->XLower_ - this->FullXLower_;
+
+			// Corrects the position on the scroll bar.
+			if((sliderPos <= scrollBar->maximum())
+				&& (sliderPos >= scrollBar->minimum()))
+					scrollBar->setSliderPosition(sliderPos);
+		}
+
+		// Call the base draw method.
+		QCustomPlot::replot();
+	}
+
 	// Safely removes a plot from the graph.
 	void Remove(PlotData* plotData) {
 
@@ -287,6 +345,10 @@ public:
 		// is nulled if it references the same pointer.
 		if(this->SelectedPlotData_ == plotData)
 			this->SelectedPlotData_ = NULL;
+
+		// Remove all items in the undo stack list
+		// with a reference to the plot being removed.
+		this->UndoStack_.RemoveAll(plotData);
 
 		// Remove the data from the list.
 		this->Data_->remove(plotData);
@@ -304,6 +366,38 @@ public:
 		// Redraw the plot.
 		// NOTE: Replot is called instead of reloading all of the data.
 		this->replot();
+	}
+
+	// Returns a state indicating if the viewport is zoomed or not.
+	bool IsZoomed() const {
+		if((this->FullXLower_ != this->XLower_)
+			|| (this->FullXUpper_ != this->XUpper_)
+			|| (this->FullYLower_ != this->YLower_)
+			|| (this->FullYUpper_ != this->YUpper_))
+			return true;
+		return false;
+	}
+#pragma endregion
+protected slots:
+#pragma region Slots
+	// Shifts the viewport of the graph along the x axis.
+	// NOTE: "value" changes the value of the lower bound.
+	void ShiftViewport(int value) {
+
+		// Calculate the size of the viewport.
+		int viewRange = this->XUpper_ - this->XLower_;
+		
+		// Get its magnitude, in case it is negative.
+		viewRange = abs(viewRange);
+
+		// Adjust the left bounds of the viewport.
+		this->XLower_ = value + this->FullXLower_;
+
+		// Adjust the right bounds of the viewport.
+		this->XUpper_ = this->XLower_ + viewRange;
+
+		// Sets in the new bounds and replots.
+		this->SetBounds();
 	}
 #pragma endregion
 protected:
@@ -332,10 +426,10 @@ protected:
 
 					// Adjust the colors of the new plot.
 					QPen drawPen = QPen((*i)->Color);
-					drawPen.setWidthF(((*i)->GetSelected()) ? BOLD_PEN_WIDTH : this->DefaultPenWidth_);
+					drawPen.setWidthF(((*i)->GetSelected()) ? BoldPenWidth : this->DefaultPenWidth_);
 					ScatterGraph->setPen(drawPen);
 					ScatterGraph->setScatterStyle(QCP::ssDisc);
-					ScatterGraph->setScatterSize(SCATTER_DOT_SIZE);
+					ScatterGraph->setScatterSize(ScatterDotSize);
 					ScatterGraph->setLineStyle(QCPGraph::lsNone);
 
 					// Reference the new plot to be 
@@ -354,7 +448,7 @@ protected:
 
 					// Adjust the colors of the new curve.
 					QPen drawPen = QPen((*i)->Color);
-					drawPen.setWidthF(((*i)->GetSelected()) ? BOLD_PEN_WIDTH : this->DefaultPenWidth_);
+					drawPen.setWidthF(((*i)->GetSelected()) ? BoldPenWidth : this->DefaultPenWidth_);
 					CurveGraph->setPen(drawPen);
 
 					// Reference the new curve to be
@@ -398,7 +492,7 @@ protected:
 
 		// Check if the button pressed is the left mouse button.
 		if(event->button() == Qt::MouseButton::LeftButton) {
-
+#pragma region Resetting the Selected Plot
 			// Check if there is a selected plot or not.
 			if(this->SelectedPlotData_ != NULL) {
 
@@ -409,7 +503,8 @@ protected:
 				// Return the selected plot to null.
 				this->SelectedPlotData_ = NULL;
 			}
-
+#pragma endregion
+#pragma region Controls Plot Selection and Moving
 			// Check if a plot is selected.
 			if (this->SelectedPlot_ = plottableAt(event->pos(), false)) {
 
@@ -421,6 +516,9 @@ protected:
 						// Change the selection state of the plot.
 						if(this->IsSelectBoldfaced_)
 							this->SelectedPlotData_->SetSelected(true);
+
+						// Save the state of the plot data.
+						this->UndoStack_.Push(this->SelectedPlotData_);
 
 						// Clear the selected plot.
 						// NOTE: Plot will become irrelevant on redraw.
@@ -434,6 +532,8 @@ protected:
 				// Redraw the plots.
 				if(this->IsSelectBoldfaced_)
 					this->Refresh();
+#pragma endregion
+#pragma region Controls Viewport Zooming
 			} else {
 
 				// Pull the starting position of the mouse.
@@ -443,22 +543,23 @@ protected:
 				if(Util::CheckBoundaries(this->Origin_, this->BoundingArea())) {
 					this->SelectionBox_->setGeometry(QRect(this->Origin_, QSize()));
 					this->SelectionBox_->show();
+
+					// Change the state.
+					this->IsMouseZooming_ = true;
 				}
-
-				// Change the state.
-				this->CtrlLeftClick_ = true;
 			}
-
+#pragma endregion
 			// Set the mouse dragging flag to true.
 			this->mDragging = true;
 		}
-
+#pragma region Reset the Viewport to Full View
 		// Check if right mouse button was pressed.
 		if(event->button() == Qt::MouseButton::RightButton) {
 
+			// Resets the viewport to full view.
 			this->ResetView();
 		}
-
+#pragma endregion
 		// Call base event.
 		QWidget::mousePressEvent(event);
 	}
@@ -471,9 +572,9 @@ protected:
 
 		// Check if the mouse is clicked and dragging.
 		if(this->mDragging) {
-
-			// Check if the control key was pressed.
-			if(this->CtrlLeftClick_) {
+#pragma region Controls the Viewport Zooming
+			// Check if the mouse is invoking the zoom state.
+			if(this->IsMouseZooming_) {
 
 				// Localize the position.
 				QPoint currPos = event->pos();
@@ -484,7 +585,8 @@ protected:
 				// Update the dimensions of the selection box.
 				this->SelectionBox_->setGeometry(QRect(this->Origin_,
 					Util::CheckPoint(currPos, boundingArea)).normalized());
-
+#pragma endregion
+#pragma region Controls Plot Selection and Moving
 			} else {
 
 				// Check if a plot is currently selected.
@@ -513,6 +615,7 @@ protected:
 				// Save the current position of the mouse.
 				this->Origin_ = event->pos();
 			}
+#pragma endregion
 		}
 		
 		// Call base widget event handler.
@@ -525,29 +628,28 @@ protected:
 		// Check if the button released was the left mouse button.
 		if(event->button() == Qt::MouseButton::LeftButton) {
 
-			// Check if the control key was pressed.
-			if(this->CtrlLeftClick_) {
+			// Check if the mouse has invoked zooming.
+			if(this->IsMouseZooming_) {
 
 				// Localize the geometry of the selection box.
 				QRect selectArea = this->SelectionBox_->geometry();
 
 				// Set the view range for the x axis.
-				this->xAxis->setRange(this->XLower_ = this->xAxis->pixelToCoord(selectArea.x()),
-					this->XUpper_ = this->xAxis->pixelToCoord(selectArea.x() + selectArea.width()));
+				this->XLower_ = this->xAxis->pixelToCoord(selectArea.x());
+				this->XUpper_ = this->xAxis->pixelToCoord(selectArea.x() + selectArea.width());
 
 				// Set the view range for the y axis.
-				this->yAxis->setRange(this->YLower_ = this->yAxis->pixelToCoord(selectArea.y()),
-					this->YUpper_ = this->yAxis->pixelToCoord(selectArea.y() + selectArea.height()));
+				this->YLower_ = this->yAxis->pixelToCoord(selectArea.y());
+				this->YUpper_ = this->yAxis->pixelToCoord(selectArea.y() + selectArea.height());
 
-				// Redraw the plot.
-				// NOTE: Replot is called instead of reloading all of the data.
-				this->replot();
+				// Adjust the viewport and replot.
+				this->SetBounds();
 
 				// Stop drawing the selection box.
 				this->SelectionBox_->hide();
 
 				// Clear the state.
-				this->CtrlLeftClick_ = false;
+				this->IsMouseZooming_ = false;
 			} 
 
 			// Set the selectable state to false.
@@ -570,7 +672,7 @@ protected:
 
 			// Localize wheel value.
 			double stepSize = event->delta();
-			double scaleRate = 1 + ((stepSize > 0) ? SCALE_RATE : -SCALE_RATE);
+			double scaleRate = 1 + ((stepSize > 0) ? ScaleRate : -ScaleRate);
 
 			// Alter the values.
 			this->SelectedPlotData_->ScaleY(scaleRate);
@@ -612,15 +714,33 @@ protected:
 			if(event->key() == Qt::Key::Key_Down)
 				yShift += -1;
 
-			// Offset the plot data.
-			this->SelectedPlotData_->SetXYOffset(this->SelectedPlotData_->GetXOffset() 
-				+ SHIFT_RATE * xShift, this->SelectedPlotData_->GetYOffset() + SHIFT_RATE * yShift);
+			// Check if any movements have been made.
+			if((xShift != 0) || (yShift != 0)) {
 
-			// Set the new lower and upper bounds.
-			this->AdjustRange();
+				// Record the state prior to change.
+				this->UndoStack_.Push(this->SelectedPlotData_);
 
-			// Redraw the plots.
-			this->Refresh();
+				// Offset the plot data.
+				this->SelectedPlotData_->SetXYOffset(this->SelectedPlotData_->GetXOffset() 
+					+ ShiftRate * xShift, this->SelectedPlotData_->GetYOffset() + ShiftRate * yShift);
+
+				// Set the new lower and upper bounds.
+				this->AdjustRange();
+
+				// Redraw the plots.
+				this->Refresh();
+			}
+		}
+
+		// Check for the undo key sequence.
+		if((event->key() == Qt::Key_Z) && 
+			(event->modifiers() == Qt::ControlModifier)) {
+
+				// Restore the previous state.
+				this->UndoStack_.Pop().Restore();
+
+				// Refresh the plot.
+				this->Refresh();
 		}
 
 		// Call base event handler.
@@ -635,7 +755,22 @@ protected:
 	}
 #pragma endregion
 #pragma region Event Members
-	// Sets in place the new upper and lower bounds.
+	// Sets the new upper and lower bounds and replots.
+	// NOTE: This method should be called after adjusting bound member variables.
+	void SetBounds() {
+
+		// Set the view range for the x axis.
+		this->xAxis->setRange(this->XLower_, this->XUpper_);
+
+		// Set the view range for the y axis.
+		this->yAxis->setRange(this->YLower_, this->YUpper_);
+
+		// Redraw the plot.
+		// NOTE: Replot is called instead of reloading all of the data.
+		this->replot();
+	}
+
+	// Calculates the new bounds after a plot has been changed.
 	void AdjustRange() {
 
 		// Declare intermediate variables.
@@ -692,8 +827,8 @@ protected:
 	double FullYUpper_;
 	double FullYLower_;
 
-	// Record the state initiated by ctrl + left click.
-	bool CtrlLeftClick_;
+	// Record if the zoom state was initiated.
+	bool IsMouseZooming_;
 
 	// Pointer to a previously selected plot.
 	QCPAbstractPlottable* SelectedPlot_;
@@ -709,6 +844,13 @@ protected:
 
 	// Indicates if selected plots should be drawn with boldface.
 	bool IsSelectBoldfaced_;
+
+	// Stack used for storing graph changing states.
+	UndoStack<PlotData> UndoStack_;
+
+	// Extended references to the axis.
+	QCPAxisEX* xAxisEX_;
+	QCPAxisEX* yAxisEX_;
 #pragma endregion
 };
 

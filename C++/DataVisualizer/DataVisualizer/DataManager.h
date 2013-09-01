@@ -1,52 +1,88 @@
 // DataManager.h - Data Manager Class Declaration
 // Written By Jesse Z. Zhong
-#ifndef __DataManager_H__
-#define __DataManager_H__
+#ifndef __Data_Manager_H__
+#define __Data_Manager_H__
 #pragma region Includes
 #include "stdafx.h"
 #include "DataSnapshot.h"
 #include "DataSavepoint.h"
 #include "DataCollisionEnergy.h"
 #include "DataRPK.h"
-#include "FileReader.h"
 using namespace std;
 #pragma endregion
-// 
-class DataManager : public FileReader {
+// Used for reading and storing data.
+class DataManager {
 public:
 	// Constructor
-	DataManager();
-    
-    // Init-Constructor
-    DataManager(string directory);
-    
-    // Stores All Available Snapshots and save points
-    void StoreData();
+	DataManager(QWidget* parent = 0) {
+		this->RPK_ = DataRPK();
+		this->DirPath_ = QString();
+		this->Snapshot_ = vector<DataSnapshot>();
+		this->Savepoint_ = vector<DataSavepoint>();
+		this->CollideEnergy_ = vector<DataCollisionEnergy>();
+		this->Parent_ = parent;
+		this->MaxSets_ = 0;
+	}
 
-	// Return Snapshot Data of a Particular Index
+	// Destructor
+	~DataManager() {
+
+	}
+    
+	// Reads and stores all available
+	// files in a specified directory.
+	void StoreData();
+
+	// Returns a single RPK data.
+	// Returns a blank RPK if no data is found.
+	DataRPK& GetRPKData();
+
+	// Returns snapshot data at a given index.
+	// Returns a blank snapshot if no data is found.
 	DataSnapshot& GetSnapshotData(int index);
     
-    // Return Savepoint Data of a Particular Index
-    DataSavepoint& GetSavepointData(int index);
+	// Returns the save point data at a given index.
+	// Returns a blank save point data if no data is found.
+	DataSavepoint& GetSavepointData(int index);
     
-    // Returns Collision Energy Data for a Particular Index
-    DataCollisionEnergy& GetCollisionEnergyData(int index);
+	// Returns the collision energy data at a given index.
+	// Returns a blank collision energy data if no data is found.
+	DataCollisionEnergy& GetCollisionEnergyData(int index);
 
+	// Returns the maximum number of files in either
+	// the snapshot, save point, or collision energy lists.
+	int GetMaxSets() const;
+
+	// Gets or sets the directory path.
+	QString GetDirPath() const;
+	void SetDirPath(const QString& dir);
 private:
-    // Check if Index Access is Within Bounds
-    bool CheckBounds(int index) const;
+    // Check if an index is within the 
+	// range of a given container or array.
+	template<typename T>
+    bool CheckBounds(int index, vector<T> container) const;
+
+	// Holds an RPK data set.
+	DataRPK RPK_;
     
-	// Collection of Snapshot Data
-	vector<DataSnapshot> SnapshotCollection_;
+	// List of compiled snapshot data.
+	vector<DataSnapshot> Snapshot_;
     
-    // Collection of Savepoint Data
-    vector<DataSavepoint> SavepointCollection_;
+    // List of compiled save point data.
+    vector<DataSavepoint> Savepoint_;
     
-    // Collection of Collision Energy Data
-    vector<DataCollisionEnergy> CollisionEnergyCollection_;
-    
-    // Snapshot Ranges
-    DataSnapshot SnapshotRange_;
+    // List of compiled collision energy data.
+    vector<DataCollisionEnergy> CollideEnergy_;
+
+	// Path of the file directory that the files are read from.
+	QString DirPath_;
+
+	// Records the number of files whole sets stored.
+	int MaxSets_;
+
+	// Reference to a widget that will be used
+	// for any temporary UI elements created.
+	QWidget* Parent_;
 };
 
 #endif

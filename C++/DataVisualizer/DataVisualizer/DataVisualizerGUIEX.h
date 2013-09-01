@@ -1,116 +1,143 @@
 // SimulationPlotGUI_UI.h - Simulation plot GUI class expansion
 // Written By Jesse Z. Zhong
-#ifndef __DataVisualizerGUIEX_H__
-#define __DataVisualizerGUIEX_H__
+#ifndef __Data_Visualizer_GUI_EX_H__
+#define __Data_Visualizer_GUI_EX_H__
 #pragma region Includes
 #include "stdafx.h"
-#include "ProjectSettings.h"
 #include "ui_DataVisualizerGUI.h"
-#include "Utilities.h"
-#include "IonizationVsRadius.h"
-#include "DensityVsRadius.h"
-#include "TemperatureVsRadius.h"
-#include "WallRadiusVsTime.h"
-#include "ParticleDistributionPlot.h"
-#include "CollisionEnergyPlot.h"
+#include "Util.h"
+#include "DataFile.h"
+#include "G_DensityRadius.h"
+#include "G_IonizationRadius.h"
+#include "G_TempRadius.h"
+#include "G_WallRadTime.h"
+#include "GL_CollideEnergy.h"
+#include "GL_ParticleDist.h"
 #include "StringResource.h"
-#pragma endregion
-#pragma region Graph Constants
-
-// Default graph dimensions
-const int DefaultWidth = 360;
-#pragma endregion
 using namespace std;
 using namespace Ui;
-	
+#pragma endregion
+#pragma region Graph Constants
+// The default width of individual plots.
+const int DefaultWidth = 360;
+
+// The padding used between the drawing of each plot.
+const int PlotPadding = 40;
+
+// The space between the left edge of 
+// the plot area and the left most plots.
+const int PlotLeftMargin = 4;
+
+// The space between the top edge of
+// the plot area and the top most plots.
+const int PlotTopMargin = 4;
+
+// Indicates how many graphs can be
+// arranged in a row in the graph area.
+const int PlotRowSize = 2;
+#pragma endregion
 // Extends the primary GUI window to have the intended items and behaviors.
 class DataVisualizerGUIEX : public DataVisualizerGUIClass {
 public:
 	// Plots
-	IonizationVsRadiusGraph IonizationVsRadiusGraph_;
-	DensityVsRadiusGraph DensityVsRadiusGraph_;
-	TemperatureVsRadiusGraph TemperatureVsRadiusGraph_;
-    WallRadiusVsTimeGraph WallRadiusVsTimeGraph_;
-    ParticleDistributionPlot ParticleDistributionPlot_;
-    CollisionEnergyPlot CollisionEnergyPlot_;
+	G_IonizationRadius* IonRadius;
+	G_DensityRadius* DensityRadius;
+	G_TempRadius* TempRadius;
+    G_WallRadTime* WallRadTime;
+    GL_ParticleDist* PartDist;
+    GL_CollideEnergy* CollideEnergy;
+
+	// Reference to all of the plots.
+	vector<Graph<DataFile>*> Plots;
+
+	// Destructor
+	~DataVisualizerGUIEX() {
+		delete this->IonRadius;
+		delete this->DensityRadius;
+		delete this->TempRadius;
+		delete this->WallRadTime;
+		delete this->PartDist;
+		delete this->CollideEnergy;
+	}
         
     // Initializes the UI in this scope
     void InitializeUI(QMainWindow *parent) {
             
-        // Setup UI
-        this->setupUi(parent);
+        // Start labels in complex mode.
+		this->ChangeLabelDisplayMode(ComplexDisplayMode);
             
-        // Setup the graphs
-        this->SetupGraphs(parent);
-            
-        // Start labels in complex mode
-		this->ChangeLabelDisplayMode(COMPLEX_DISPLAY_MODE);
-            
-        // Initialize graph size
+        // Initialize graph size.
         this->GraphSize_ = DefaultWidth;
+
+		// Setup the graphs.
+		this->SetupGraphs(parent);
     }
 
     // Sets up plots with all the default settings
 	void SetupGraphs(QMainWindow *parent) {
-		this->InitializeIonizationVsRadius(this->GraphScrollArea);
-		this->InitializeDensityVsRadius(this->GraphScrollArea);
-		this->InitializeTemperatureVsRadius(this->GraphScrollArea);
-		this->InitializeWallRadiusVsTime(this->GraphScrollArea);
-		this->ChangeGraphWidths(this->GraphSize_);
 
-		this->GraphLayoutArea->addWidget(this->IonizationVsRadiusGraph_.GetGraph());
-		this->IonizationVsRadiusGraph_.GetGraph()->setMinimumHeight(600);
-		this->IonizationVsRadiusGraph_.GetGraph()->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-		this->GraphLayoutArea->addWidget(this->DensityVsRadiusGraph_.GetGraph());
-		this->GraphLayoutArea->addWidget(this->TemperatureVsRadiusGraph_.GetGraph());
-		this->GraphLayoutArea->addWidget(this->WallRadiusVsTimeGraph_.GetGraph());
+		// Initialize the plots.
+		this->Plots = vector<Graph<DataFile>*>();
+		this->Plots.push_back((Graph<DataFile>*)(this->IonRadius = new G_IonizationRadius(this->PlotArea)));
+		this->Plots.push_back((Graph<DataFile>*)(this->DensityRadius = new G_DensityRadius(this->PlotArea)));
+		this->Plots.push_back((Graph<DataFile>*)(this->TempRadius = new G_TempRadius(this->PlotArea)));
+		this->Plots.push_back((Graph<DataFile>*)(this->WallRadTime = new G_WallRadTime(this->PlotArea)));
 
-        // Set the scroll area of parent widget
-		//GraphAreaScroll->setBackgroundRole(QPalette::Light);
-	}
+		// Initialize the plots with label names.
+		this->IonRadius->InitializeGraph(QRect(), "Radius", "Ionization %");
+		this->DensityRadius->InitializeGraph(QRect(), "Radius", "Density");
+		this->TempRadius->InitializeGraph(QRect(), "Radius", "Temperature");
+		this->WallRadTime->InitializeGraph(QRect(), "Time", "Wall Radius");
 
-	// Initializes density vs radius graph
-	void InitializeDensityVsRadius(QWidget* parent) {
-		this->DensityVsRadiusGraph_.GetGraph()->setParent(parent);
-		this->DensityVsRadiusGraph_.InitializeGraph(QRect(),
-			"Radius", "Density");
-	}
+		// Initialize shared information for all of the plots.
+		for(int i = 0, j = this->Plots.size(); i < j; i++) {
 
-	// Initializes temperature vs radius graph
-	void InitializeTemperatureVsRadius(QWidget* parent) {
-		this->TemperatureVsRadiusGraph_.GetGraph()->setParent(parent);
-		this->TemperatureVsRadiusGraph_.InitializeGraph(QRect(),
-			"Radius", "Temperature");
-	}
+			// Assign the parent of all of the plots.
+			this->Plots[i]->GetGraph()->setParent(this->PlotArea);
 
-	// Initializes ionization vs radius graph
-	void InitializeIonizationVsRadius(QWidget* parent) {
-		this->IonizationVsRadiusGraph_.GetGraph()->setParent(parent);
-		this->IonizationVsRadiusGraph_.InitializeGraph(QRect(),
-			"Radius", "Ionization %");
+			// Change the size policy of the plots.
+			this->Plots[i]->GetGraph()->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+		}
+
+		// Change the widths of all the plots.
+		this->ChangePlotWidths(this->GraphSize_);
+
+		// Initialize the low level plots.
+		this->PartDist = new GL_ParticleDist();
+		this->CollideEnergy = new GL_CollideEnergy();
 	}
         
-    // Initialize wall radius vs time graph
-    void InitializeWallRadiusVsTime(QWidget* parent) {
-        this->WallRadiusVsTimeGraph_.GetGraph()->setParent(parent);
-        this->WallRadiusVsTimeGraph_.InitializeGraph(QRect(),
-			"Time", "Wall Radius");
-    }
-        
-    // Change the width of all the graphs
-    void ChangeGraphWidths(int width) {
+    // Change the width of all the plots.
+    void ChangePlotWidths(int width) {
+
+		// Check if the passed width is a non negative number.
         if(width < 0)
             throw "Graph width cannot be a negative number";
 
+		// Change the height and width of all of the plots.
 		int height = this->Height(width);
-            
-        this->DensityVsRadiusGraph_.SetGeometry(QRect(0, 0, width, height));
-        this->TemperatureVsRadiusGraph_.SetGeometry(QRect(0, 0, width, height));
-        this->IonizationVsRadiusGraph_.SetGeometry(QRect(0, 0, width, height));
-        this->WallRadiusVsTimeGraph_.SetGeometry(QRect(0, 0, width, height));
-        this->ParticleDistributionPlot_.setGeometry(QRect(0, 0, width, height));
-        this->CollisionEnergyPlot_.setGeometry(QRect(0, 0, width, height));
+		int numOfPlots = this->Plots.size();
+		for(int i = 0; i < numOfPlots; i++) {
 
+			// Calculate the indices in the plot area
+			// "table" where this plot will be drawn in.
+			int rowIndex = i / PlotRowSize;
+			int colIndex = i % PlotRowSize;
+
+			// Assign the newly calculated geometry.
+			this->Plots[i]->GetGraph()->setGeometry(
+				(PlotLeftMargin + (colIndex * (PlotPadding + width))),
+				(PlotTopMargin + (rowIndex * (PlotPadding + height))), 
+				width, height);
+		}
+
+		// Recalculate the dimensions of the scroll area
+		// according to the number of plots in the area.
+		this->PlotArea->setGeometry(0, 0,
+			(PlotLeftMargin + (PlotPadding + width) * PlotRowSize),
+			(PlotTopMargin + (ceil(numOfPlots / PlotRowSize)) * height + PlotPadding));
+
+		// Assign the size shared by the plots.
         this->GraphSize_ = width;
     }
         
@@ -118,7 +145,7 @@ public:
     void ChangeLabelDisplayMode(int mode) {
         switch(mode) {
             // Complex mode
-            case COMPLEX_DISPLAY_MODE:
+            case ComplexDisplayMode:
             {
                 TimeLabel->setText(SRC_COMPLEX_TIME);
                 WallRadiusLabel->setText(SRC_COMPLEX_WALL_RADIUS);
@@ -134,7 +161,7 @@ public:
                 AverageDensityLabel->setText(SRC_COMPLEX_AVG_DENSITY);
             }
                 break;
-            case SIMPLE_DISPLAY_MODE:
+            case SimpleDisplayMode:
             {
                 TimeLabel->setText(SRC_SIMPLE_TIME);
                 WallRadiusLabel->setText(SRC_SIMPLE_WALL_RADIUS);
@@ -169,19 +196,19 @@ public:
         }
     }
         
-    // Returns the Current Graph Size
+    // Returns the width of the plots.
     int GetGraphWidth() const {
-        return GraphSize_;
+        return this->GraphSize_;
     }
         
 private:
         
-    // Calculates appropriate graph height using the width and PHI
-    int Height(int width) {
+    // Calculates appropriate graph height using the width and PHI.
+    int Height(int width = DefaultWidth) {
         return (int) (width / Util::PHI);
     }
         
-    // Stores the graph width to memory every time there is a size update
+    // Stores the graph width to memory every time there is a size update.
     int GraphSize_;
 };
 

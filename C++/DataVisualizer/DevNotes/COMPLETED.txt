@@ -1,0 +1,11 @@
+[Data Manager]
+The data manager needs to handle the mass reading of data files.
+To do this, the manager will read in a list of files in the directory.
+While searching the directory, the file names will be compiled into
+sorted lists depending on their extensions. The sorting will also
+involve sorting "alphabetically".
+The next part involves iterating through individual lists, possibly
+in a shared loop, and reading in individual files. Breaks in files
+will be filled with empty data sets. Compare a generated iterated 
+file name with elements of the list. This can be compared with that
+of a sorted list or a hashtable.

@@ -7,6 +7,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Simulation", "Simulation\Si
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevNotes", "DevNotes", "{781F9870-0192-4E1D-A733-75B3B3EE84A3}"
 	ProjectSection(SolutionItems) = preProject
+		DevNotes\COMPLETED.txt = DevNotes\COMPLETED.txt
 		DevNotes\TODO.txt = DevNotes\TODO.txt
 	EndProjectSection
 EndProject

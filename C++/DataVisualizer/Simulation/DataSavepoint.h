@@ -1,7 +1,7 @@
 // DataSavepoint.h - DataSavepoint Class Declaration
 // Written by Jesse Z. Zhong
-#ifndef __DataSavepoint_H__
-#define __DataSavepoint_H__
+#ifndef __Data_Savepoint_H__
+#define __Data_Savepoint_H__
 #pragma region Includes
 #include "stdafx.h"
 #include "Vector3.h"
@@ -33,8 +33,14 @@ public:
 		this->Max_ = ParticleData();
 	}
 
+	// Init-Constructor
+	DataSavepoint(const string& fileName) 
+		: DataFile(fileName) {
+			this->Read(fileName);
+	}
+
 	// Read and stores data from a save point file.
-	void Read(const string& fileName);
+	virtual void Read(const string& fileName);
 #pragma endregion
 #pragma region Accessors
 	// Returns the list of particle data.

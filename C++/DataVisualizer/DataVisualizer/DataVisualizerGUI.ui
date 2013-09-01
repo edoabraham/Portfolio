@@ -10,6 +10,70 @@
     <height>700</height>
    </rect>
   </property>
+  <property name="palette">
+   <palette>
+    <active>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>252</red>
+        <green>252</green>
+        <blue>252</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </active>
+    <inactive>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>252</red>
+        <green>252</green>
+        <blue>252</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </inactive>
+    <disabled>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>252</red>
+        <green>252</green>
+        <blue>252</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>252</red>
+        <green>252</green>
+        <blue>252</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </disabled>
+   </palette>
+  </property>
   <property name="windowTitle">
    <string>DataVisualizer</string>
   </property>
@@ -433,7 +497,7 @@
                </font>
               </property>
               <property name="text">
-               <string>Current Snapshot Number : </string>
+               <string>Current Data Set : </string>
               </property>
              </widget>
             </item>
@@ -504,10 +568,22 @@
         </item>
         <item row="0" column="0">
          <widget class="QScrollArea" name="GraphScrollArea">
-          <property name="widgetResizable">
-           <bool>true</bool>
+          <property name="focusPolicy">
+           <enum>Qt::ClickFocus</enum>
           </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAsNeeded</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAsNeeded</enum>
+          </property>
+          <property name="widgetResizable">
+           <bool>false</bool>
+          </property>
+          <widget class="QWidget" name="PlotArea">
            <property name="geometry">
             <rect>
              <x>0</x>
@@ -516,21 +592,12 @@
              <height>498</height>
             </rect>
            </property>
-           <layout class="QGridLayout" name="gridLayout">
-            <item row="0" column="0">
-             <layout class="QFormLayout" name="GraphLayoutArea">
-              <property name="sizeConstraint">
-               <enum>QLayout::SetFixedSize</enum>
-              </property>
-              <property name="fieldGrowthPolicy">
-               <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
-              </property>
-              <property name="rowWrapPolicy">
-               <enum>QFormLayout::DontWrapRows</enum>
-              </property>
-             </layout>
-            </item>
-           </layout>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
           </widget>
          </widget>
         </item>
@@ -576,7 +643,7 @@
            </widget>
           </item>
           <item row="2" column="2">
-           <widget class="QLabel" name="RefreshIntervalSecondsLabel">
+           <widget class="QLabel" name="RefreshIntervalMSLabel">
             <property name="text">
              <string>100 Milliseconds</string>
             </property>
@@ -719,13 +786,6 @@
              <number>2</number>
             </property>
             <item>
-             <widget class="QPushButton" name="BrowseDirectoryButton">
-              <property name="text">
-               <string>Browse...</string>
-              </property>
-             </widget>
-            </item>
-            <item>
              <spacer name="horizontalSpacer_4">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
@@ -737,6 +797,20 @@
                </size>
               </property>
              </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="BrowseDirectoryButton">
+              <property name="text">
+               <string>Browse...</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="DirLoadButton">
+              <property name="text">
+               <string>Load</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>

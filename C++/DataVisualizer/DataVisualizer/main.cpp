@@ -2,13 +2,13 @@
 /// Written by Jesse Z. Zhong
 
 #include "stdafx.h"
-#include "DataVisualizerGUI.h"
+#include "DataVisualizer.h"
 #include <QApplication>
 
 /// Program Loop
 int main(int argc, char *argv[]) {
 	QApplication application(argc, argv);
-	SimulationPlotGUI mainWindow;
+	DataVisualizer mainWindow;
 	try {
         // Test if the window takes up
         // all of the screen space or not

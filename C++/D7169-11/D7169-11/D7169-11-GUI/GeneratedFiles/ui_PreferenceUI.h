@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'PreferenceUI.ui'
 **
-** Created: Tue Jul 2 02:23:33 2013
+** Created: Thu Jul 25 20:19:20 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -32,14 +32,14 @@ public:
     QVBoxLayout *verticalLayout;
     QFormLayout *formLayout;
     QLabel *BoldfaceLabel;
-    QCheckBox *checkBox;
+    QCheckBox *BoldfaceCheck;
     QDialogButtonBox *buttonBox;
 
     void setupUi(QDialog *PreferenceUI)
     {
         if (PreferenceUI->objectName().isEmpty())
             PreferenceUI->setObjectName(QString::fromUtf8("PreferenceUI"));
-        PreferenceUI->resize(329, 166);
+        PreferenceUI->resize(223, 284);
         gridLayout = new QGridLayout(PreferenceUI);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         verticalLayout = new QVBoxLayout();
@@ -47,17 +47,17 @@ public:
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         formLayout = new QFormLayout();
         formLayout->setObjectName(QString::fromUtf8("formLayout"));
-        formLayout->setHorizontalSpacing(40);
-        formLayout->setContentsMargins(20, 10, -1, -1);
+        formLayout->setHorizontalSpacing(20);
+        formLayout->setContentsMargins(10, 10, -1, -1);
         BoldfaceLabel = new QLabel(PreferenceUI);
         BoldfaceLabel->setObjectName(QString::fromUtf8("BoldfaceLabel"));
 
         formLayout->setWidget(0, QFormLayout::LabelRole, BoldfaceLabel);
 
-        checkBox = new QCheckBox(PreferenceUI);
-        checkBox->setObjectName(QString::fromUtf8("checkBox"));
+        BoldfaceCheck = new QCheckBox(PreferenceUI);
+        BoldfaceCheck->setObjectName(QString::fromUtf8("BoldfaceCheck"));
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, checkBox);
+        formLayout->setWidget(0, QFormLayout::FieldRole, BoldfaceCheck);
 
 
         verticalLayout->addLayout(formLayout);
@@ -83,8 +83,8 @@ public:
     void retranslateUi(QDialog *PreferenceUI)
     {
         PreferenceUI->setWindowTitle(QApplication::translate("PreferenceUI", "Dialog", 0, QApplication::UnicodeUTF8));
-        BoldfaceLabel->setText(QApplication::translate("PreferenceUI", "<html><head/><body><p><span style=\" font-weight:600;\">Boldface Selected Plots</span></p></body></html>", 0, QApplication::UnicodeUTF8));
-        checkBox->setText(QString());
+        BoldfaceLabel->setText(QApplication::translate("PreferenceUI", "<html><head/><body><p><span style=\" font-size:10pt;\">Boldface Selected Plots</span></p></body></html>", 0, QApplication::UnicodeUTF8));
+        BoldfaceCheck->setText(QString());
     } // retranslateUi
 
 };

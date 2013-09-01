@@ -1,7 +1,7 @@
 // DataRPK.h - DataRPK Class Declaration
 // Written By Jesse Z. Zhong
-#ifndef __DataRPK_H__
-#define __DataRPK_H__
+#ifndef __Data_RPK_H__
+#define __Data_RPK_H__
 #pragma region Includes
 #include "stdafx.h"
 #include "DataFile.h"
@@ -36,9 +36,15 @@ public:
 		this->Min_ = RpkDataPoint();
 		this->Max_ = RpkDataPoint();
 	}
+
+	// Init-Constructor
+	DataRPK(const string& fileName) 
+		: DataFile(fileName) {
+			this->Read(fileName);
+	}
     
     // Reads and stores data from an RPK file.
-    void Read(const string& fileName);
+    virtual void Read(const string& fileName);
 #pragma endregion
 #pragma region Accessors
     // Returns the list of RPK data.

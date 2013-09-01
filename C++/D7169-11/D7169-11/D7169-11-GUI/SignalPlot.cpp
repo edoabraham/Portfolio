@@ -52,7 +52,7 @@ PlotData* SignalPlot::ProcessPoints(DataFile& data) {
 	plotData->SetXLower(0);
 	plotData->SetXUpper(x);
 
-	// Compare range with exist range.
+	// Compare range with existing range.
 	this->Graph_->SetFullXLower(0);
 	this->Graph_->SetFullXUpper((x > this->Graph_->GetFullXUpper()) 
 		? x : this->Graph_->GetFullXUpper());

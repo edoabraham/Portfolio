@@ -1,5 +1,7 @@
 // Vector3.h - Vector 3D Struct Declaration
 // Written By Jesse Z. Zhong
+#ifndef __Vector_3D_H__
+#define __Vector_3D_H__
 #pragma region Includes
 #include "stdafx.h"
 using namespace std;
@@ -62,3 +64,4 @@ ostream& operator<<(ostream& out, const Vector3<T>& data) {
     out << data.X << ", " << data.Y << ", " << data.Z;
     return out;
 }
+#endif // End : Vector3D

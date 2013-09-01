@@ -17,7 +17,7 @@ namespace Ui {
 			
 		}
 
-		// Initialize the forms auxiliary widgets.
+		// Initialize the form's auxiliary widgets.
 		void Init(QObject* parent = NULL);
 	};
 }

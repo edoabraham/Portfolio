@@ -9,11 +9,31 @@
 #include "DataCDF.h"
 #pragma endregion
 #pragma region Constants
+#pragma region Files
+// File extension for net cdf files.
 const char* CDFExtension = ".cdf";
+
+// File extension for backed up net cdf files.
 const string BackupExtension = ".cdf.bak";
+
+// Name of the folder used to store backed up files.
 const QString BackupFolder = "/Backup";
+#pragma endregion
+#pragma region Sample List
+// Column index for the sample IDs in the table.
 const int SampleIDColIndex = 0;
+
+// Column index for the file names in the table.
 const int SampleFileColIndex = SampleIDColIndex + 1;
+#pragma endregion
+#pragma region Status Bar
+// Base color of the program's status bar.
+// Color: Light blue; same as Visual Studio 2012.
+const QColor StatusBarBaseColor = QColor(0, 122, 204);
+
+// Text color for the program's status bar.
+// Color: White.
+const QColor StatusBarTextColor = QColor(255, 255, 255);
 #pragma endregion
 #pragma region Registry Items
 // Registry key for the directory of the last opened file.
@@ -24,10 +44,7 @@ const QString SelectionBoldface = "Selection Boldface";
 
 // Registry key for the list of recently opened files.
 const QString RecentFiles = "Recently Opened Files";
-
-// The maximum number of items that can
-// be stored in the recently opened listened.
-const int MaxRecentList = 10;
+#pragma endregion
 #pragma endregion
 #pragma region Private Slots
 #pragma region Data and Plots
@@ -55,26 +72,38 @@ void MainUI::LoadNewData() {
 		// Localize a file name.
 		fileName = fileNames[i];
 		fileName = fileName.replace('\\', "/");
-		Util::Print("File open: " + fileName.toStdString());
+		
 
-		// Check if there was a file path read.
-		if(fileName != "") {
+		// Load the data of the file.
+		this->LoadNewData(fileName);
 
-			// Create a new DataFile for reading the file.
-			DataCDF* datFile = new DataCDF();
-			Util::Print("New DataFile created. Attempting to parse file...");
+		// Add the new loaded file to the recent files list.
+		this->SetCurrentFile(fileName);
+	}
+}
 
-			// Begin reading and parsing the file.
-			datFile->Read(fileName.toStdString());
-			Util::Print("Read file: " + fileName.toStdString());
+// Loads the data for a single file.
+void MainUI::LoadNewData(const QString& fileName) {
 
-			// Check if the file was correctly read or not.
-			if(!datFile->GetFileStored())
-				throw "Failed to read the file.";
+	// Check if there was a file path read.
+	if(fileName != "") {
 
-			// Check if an entry with the same ID already exists.
-			if(this->DataFiles_.find(QString(datFile->GetFileName().c_str())) 
-				== this->DataFiles_.end()) {
+		// Create a new DataFile for reading the file.
+		DataCDF* datFile = new DataCDF();
+		Util::Print("New DataFile created. Attempting to parse file...");
+
+		// Begin reading and parsing the file.
+		datFile->Read(fileName.toStdString());
+		Util::Print("Read file: " + fileName.toStdString());
+		this->WriteStatusMsg("Opening " + fileName);
+
+		// Check if the file was correctly read or not.
+		if(!datFile->GetFileStored())
+			throw "Failed to read the file.";
+
+		// Check if an entry with the same ID already exists.
+		if(this->DataFiles_.find(QString(datFile->GetFileName().c_str())) 
+			== this->DataFiles_.end()) {
 
 				// Add new data to the graph.
 				auto plotData = this->UI_.SignalGraph->AddPlot(*datFile);
@@ -91,13 +120,13 @@ void MainUI::LoadNewData() {
 				// Add new entry the signal list dialog.
 				int row = 0;
 				this->SignalList_.TableWidget->insertRow(row = this->SignalList_.TableWidget->rowCount());
-				
+
 				// Set the sample ID. Make sure to check that there are columns.
 				if(this->SignalList_.TableWidget->columnCount() > SampleIDColIndex) {
 
 					// Create a new table cell.
 					QTableWidgetItem* tableItem = new QTableWidgetItem(datFile->GetSampleID().c_str());
-					
+
 					// Change its flag so it's not editable.
 					tableItem->setFlags(tableItem->flags() ^ Qt::ItemIsEditable);
 
@@ -113,7 +142,7 @@ void MainUI::LoadNewData() {
 
 					// Create a new table cell.
 					QTableWidgetItem* tableItem = new QTableWidgetItem(datFile->GetFileName().c_str());
-					
+
 					// Change its flag so it's not editable.
 					tableItem->setFlags(tableItem->flags() ^ Qt::ItemIsEditable);
 
@@ -130,11 +159,14 @@ void MainUI::LoadNewData() {
 
 				// Add new entry to the configure dialog.
 				this->ConfigureUI_.SampleCBox->addItem(QString(datFile->GetFileName().c_str()));
-			} else {
 
-				// TODO: Display a dialog message indicating a match.
-				Util::Print(datFile->GetFileName() + " already exists.\n");
-			}
+				// Display that the signal data was added.
+				this->WriteStatusMsg("Data successfully loaded.");
+		} else {
+
+			// Display that the signal already exists.
+			Util::Print(datFile->GetFileName() + " already exists.\n");
+			this->WriteStatusMsg("Error: Data already exists.");
 		}
 	}
 }
@@ -149,6 +181,7 @@ void MainUI::RemoveData(QTableWidgetItem* item) {
 		// Localize the text of the list item view.
 		QString key = item->text();
 		Util::Print("Attempting to remove data for \"" + key.toStdString() + "\" from the program...");
+		this->WriteStatusMsg("Attempting to remove data for " + key);
 
 		// Search for the entry first.
 		if(this->DataFiles_.find(key) != this->DataFiles_.end()) {
@@ -165,6 +198,7 @@ void MainUI::RemoveData(QTableWidgetItem* item) {
 			// Remove the entry from the signals list.
 			this->DataFiles_.erase(key);
 			Util::Print("Removed the item from the listings.\n");
+			this->WriteStatusMsg("Data successfully removed.");
 		}
 
 		// Remove the key from the list item view.
@@ -372,20 +406,111 @@ void MainUI::ChangeSignalColor() {
 	}
 }
 #pragma endregion
+#pragma region Preference UI
+// Displays the user app preference window.
+void MainUI::ShowPreferences() {
+
+	// Activate and show the form.
+	this->PreferenceBox_->show();
+
+	// Get the registered settings for selection boldface, if they exist.
+	bool selectionBoldface = false;
+	if(this->ProgramSettings_->contains(SelectionBoldface))
+		selectionBoldface = this->ProgramSettings_->value(SelectionBoldface, selectionBoldface).toBool();
+
+	// Update the check box for boldface plot selection.
+	this->PreferenceUI_.BoldfaceCheck->setChecked(selectionBoldface);
+}
+
+// Registers the checked state of bold selection
+// and changes all of the plots to have the same state.
+void MainUI::PrefSelectBoldChanged(int state) {
+
+	// Check if the state is checked.
+	bool isChecked = false;
+	if(state == Qt::Checked) 
+		isChecked = true;
+
+	// Write the status to the registry.
+	this->ProgramSettings_->setValue(SelectionBoldface, isChecked);
+
+	// Change the graph to reflect the same state.
+	this->UI_.SignalGraph->GetGraph()->SetBoldfacedSelect(isChecked);
+
+	// Refresh the graph.
+	this->UI_.SignalGraph->Refresh();
+}
+#pragma endregion
 #pragma region Recent Files Action
 // Loads the list of recently opened files from the registry.
 void MainUI::LoadRecentFilesList() {
+
+	// Add UI actions to the menu.
+	for(int i = 0; i < MaxRecentList; i++) {
+		this->RecentFilesActions_[i] = new QAction(this->UI_.menuRecent);
+		this->RecentFilesActions_[i]->setVisible(false);
+		this->UI_.menuRecent->addAction(this->RecentFilesActions_[i]);
+		connect(this->RecentFilesActions_[i], SIGNAL(triggered()), 
+			this, SLOT(OpenRecentFile()));
+	}
+
+	// Update the list of files in the recent list.
+	this->UpdateRecentFilesList();
+}
+
+// Updates the list of items featured in the recently
+// opened list and update the items stored in the registry.
+void MainUI::UpdateRecentFilesList() {
+
 	// Localize the list of recent file names.
 	QStringList fileNames = this->ProgramSettings_->value(RecentFiles).toStringList();
 
 	// Get the number of file names.
-	int numFileNames = qMin(fileNames.size(), MaxRecentList);
+	int numFileNames = min(fileNames.size(), MaxRecentList);
 
 	// Iterate through the list of file names and list them in the menu.
 	for(int i = 0; i < numFileNames; i++) {
 		QString text = fileNames[i];
-
+		this->RecentFilesActions_[i]->setText(QString().setNum(i) + " " + text);
+		this->RecentFilesActions_[i]->setData(text);
+		this->RecentFilesActions_[i]->setVisible(true);
 	}
+
+	// Ensure the remaining actions are not visible.
+	for(int j = numFileNames; j < MaxRecentList; j++)
+		this->RecentFilesActions_[j]->setVisible(false);
+}
+
+// Adds a file name to the recently opened list.
+void MainUI::SetCurrentFile(const QString& fileName) {
+
+	// Localize the list of recent file names.
+	QStringList fileNames = this->ProgramSettings_->value(RecentFiles).toStringList();
+
+	// Remove any duplicates from the file name list.
+	fileNames.removeAll(fileName);
+
+	// Add the file name back to the top of the string list.
+	fileNames.prepend(fileName);
+
+	// Remove any file names that exceed the max number of entries.
+	while(fileNames.size() > MaxRecentList)
+		fileNames.removeLast();
+
+	// Save the new file name list to the registry.
+	this->ProgramSettings_->setValue(RecentFiles, fileNames);
+
+	// Update the recent actions.
+	this->UpdateRecentFilesList();
+}
+
+// Opens a file from the recently opened files list.
+void MainUI::OpenRecentFile() {
+
+	// Localize the action that called this slot.
+	QAction* action = qobject_cast<QAction*>(sender());
+	if(action)
+		this->LoadNewData(action->data().toString());
 }
 #pragma endregion
 #pragma endregion
@@ -395,6 +520,7 @@ void MainUI::ConnectWidgets() {
 	connect(this->UI_.actionOpen, SIGNAL(triggered()), this, SLOT(LoadNewData()));
 	connect(this->UI_.actionSave, SIGNAL(triggered()), this, SLOT(SaveData()));
 	connect(this->UI_.SignalsAction, SIGNAL(triggered()), this, SLOT(ShowSignals()));
+	connect(this->UI_.PreferencesAction, SIGNAL(triggered()), this, SLOT(ShowPreferences()));
 	connect(this->SignalList_.AddButton, SIGNAL(clicked()), this, SLOT(LoadNewData()));
 	connect(this->SignalList_.RemoveButton, SIGNAL(clicked()), this, SLOT(RemoveData()));
 	connect(this->SignalList_.ConfigureButton, SIGNAL(clicked()), this, SLOT(ShowConfiguration()));
@@ -403,5 +529,35 @@ void MainUI::ConnectWidgets() {
 	connect(this->ConfigureUI_.SampleCBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(UpdateConfigDisplay(QString)));
 	connect(this->ConfigureUI_.OkayButton, SIGNAL(clicked()), this, SLOT(UpdateSignalConfig()));
 	connect(this->ConfigureUI_.ColorButton, SIGNAL(clicked()), this, SLOT(ChangeSignalColor()));
+	connect(this->PreferenceUI_.BoldfaceCheck, SIGNAL(stateChanged(int)), this, SLOT(PrefSelectBoldChanged(int)));
+}
+
+// Sets up the status bar for usage.
+void MainUI::SetupStatusBar() {
+
+	// Set the background/base color of the status bar.
+	this->UI_.statusBar->setStyleSheet(
+		"background: " + StatusBarBaseColor.name()
+		
+		// Set the text color of the status bar.
+		+";\ncolor: " + StatusBarTextColor.name());
+
+	// Initialize the status label.
+	this->StatusMsg = new QLabel(this);
+
+	// Assign the label to the status bar.
+	this->UI_.statusBar->addPermanentWidget(this->StatusMsg, 1);
+
+	// Set the alignment of the status label.
+	this->StatusMsg->setAlignment(Qt::AlignLeft);
+
+	// Write a "Ready" message to the status bar.
+	this->WriteStatusMsg("Ready");
+}
+
+// Clears a status message and writes a new one.
+void MainUI::WriteStatusMsg(const QString& message) {
+	this->StatusMsg->setText(message);
+	this->UI_.statusBar->show();
 }
 #pragma endregion
