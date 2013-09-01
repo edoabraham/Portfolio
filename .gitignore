@@ -65,16 +65,6 @@ ipch/
 _ReSharper*/
 *.[Rr]e[Ss]harper
 
-# TeamCity is a build add-in
-_TeamCity*
-
-# DotCover is a Code Coverage Tool
-*.dotCover
-
-# NCrunch
-*.ncrunch*
-.*crunch*.local.xml
-
 # Installshield output folder
 [Ee]xpress/
 
@@ -155,3 +145,6 @@ $RECYCLE.BIN/
 
 # Dependency Walker
 !/D7169-11/DependencyWalker
+
+# Git
+.git

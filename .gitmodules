@@ -4,3 +4,6 @@
 [submodule "C++/DataVisualizer"]
 	path = C++/DataVisualizer
 	url = https://jessezhong@bitbucket.org/jessezhong/datavisualizer.git
+[submodule "C#/Clockwork"]
+	path = "C#/Clockwork"
+	url = https://jessezhong@bitbucket.org/jessezhong/clockwork.git
